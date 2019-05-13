@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".Scr_Received_Info">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"
+        android:weightSum="100"
+        >
+
+        <View
+            android:id="@+id/viewSpaceLeft"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            />
+
+        <View
+            android:id="@+id/icon_view"
+            android:background="@drawable/ic_check_black_24dp"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
+            />
+
+        <View
+            android:id="@+id/viewSpaceRight"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        >
+
+        <TextView
+            android:id="@+id/done_textView"
+
+            android:text="@string/scr_received_info_success1"
+            android:textSize="40sp"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        >
+
+        <TextView
+            android:id="@+id/info_textView"
+
+            android:text="@string/scr_received_info_success2"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        >
+
+        <TextView
+            android:id="@+id/thank_textView"
+
+            android:text="@string/scr_received_info_success3"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        >
+
+        <Button
+            android:id="@+id/home_btn"
+
+            android:text="@string/scr_received_info_home_btn_text"
+            android:textSize="20sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+</LinearLayout>
