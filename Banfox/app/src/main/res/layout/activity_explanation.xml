@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExplanationActivity">
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".ExplanationActivity"
+    android:background="@color/colorLightGreyBanfox">
 
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="25"
+        android:text=""
+        android:textAlignment="center"
+        android:fontFamily="@font/Raleway-Medium"
+        android:textColor="@color/colorVeryDarkBlueBanfox"
+        android:textSize="30sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="10"
+        android:weightSum="100">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"/>
+
+        <Button
+            android:id="@+id/explanationAdvanceButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="84"
+            android:background="@color/colorBlueBanfox"
+            android:text=""
+            android:textColor="@color/colorVeryLightGreyBanfox"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"/>
+
+</LinearLayout>
