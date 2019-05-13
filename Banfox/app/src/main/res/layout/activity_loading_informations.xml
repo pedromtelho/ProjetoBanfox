@@ -20,7 +20,7 @@
        android:layout_height="wrap_content"
        android:layout_centerInParent="true"
        android:layout_margin="10dp"
-       android:progressTint="#7850a3"
+       android:progressTint="#ff7c26"
        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
    <TextView
@@ -32,6 +32,7 @@
        android:layout_centerHorizontal="true"
        android:layout_marginTop="16dp"
        android:textSize="24sp"
+       android:textColor="#162d3f"
        android:visibility="invisible"/>
 
    <TextView
@@ -43,6 +44,7 @@
        android:layout_centerHorizontal="true"
        android:layout_marginTop="16dp"
        android:textSize="24sp"
+       android:textColor="#162d3f"
        android:visibility="invisible"/>
 
    <TextView
@@ -54,5 +56,6 @@
        android:layout_centerHorizontal="true"
        android:layout_marginTop="16dp"
        android:textSize="24sp"
+       android:textColor="#162d3f"
        android:visibility="invisible"/>
 </RelativeLayout>
