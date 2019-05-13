@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Scr_Received_Info extends AppCompatActivity {
+public class ReceivedInfoActivity extends AppCompatActivity {
 
     // Declarando todos os widgets usados nessa tela.
     private View icon_view;
@@ -20,7 +20,7 @@ public class Scr_Received_Info extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scr_received_info);
+        setContentView(R.layout.activity_received_info);
 
 
         // Pegando o Intent que iniciou essa tela.
@@ -68,5 +68,15 @@ public class Scr_Received_Info extends AppCompatActivity {
             // Mudando o texto a ser exibido.
             this.thank_textView.setText(R.string.scr_received_info_error3);
         }
+
+
+        // Criando um listener para o botão de voltar ao início.
+        this.home_btn.setOnClickListener(view -> {
+            // Criamos a intent para aa mudança de telas.
+            Intent homeScrIntent = new Intent(ReceivedInfoActivity.this, MainActivity.class);
+
+            // Iniciamos a activity.
+            startActivity(homeScrIntent);
+        });
     }
 }

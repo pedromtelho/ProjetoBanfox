@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".Scr_Received_Info">
+    tools:context=".ReceivedInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

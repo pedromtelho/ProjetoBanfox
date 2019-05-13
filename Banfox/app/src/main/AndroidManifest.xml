@@ -17,6 +17,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Scr_Received_Info"></activity>
+        <activity android:name=".ReceivedInfoActivity"></activity>
     </application>
 </manifest>
