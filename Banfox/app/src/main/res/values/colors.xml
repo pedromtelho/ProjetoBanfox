@@ -3,4 +3,35 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <color name="colorBlueBanfox">#6686ff </color>
+    <color name="colorLightBlueBanfox">#66b3ff </color>
+    <color name="colorGreenBanfox">#00ce8c </color>
+    <color name="colorGreyBanfox">#7c858c </color>
+    <color name="colorLightGreyBanfox">#c3c5c8 </color>
+    <color name="colorVeryLightGreyBanfox">#eef1f6 </color>
+    <color name="colorVeryDarkGreyBanfox">#333d47 </color>
+    <color name="colorVeryDarkBlueBanfox">#162d3f </color>
+    <color name="colorBlueGrayBanfox">#46547c </color>
+    <color name="colorPurpleBanfox">#7c588f </color>
+    <color name="colorLightPurpleBanfox">#b95487 </color>
+    <color name="colorMagentaBanfox">#e45a65 </color>
+    <color name="colorOrangeBanfox">#ff7c26 </color>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>
