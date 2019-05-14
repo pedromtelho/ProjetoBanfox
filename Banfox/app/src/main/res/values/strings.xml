@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Banfox</string>
+
+    <string name="scr_received_info_success1">Pronto!</string>
+    <string name="scr_received_info_success2">Suas informações foram enviadas e estão sendo processadas. Volte ao site para continuar seu cadastro.</string>
+    <string name="scr_received_info_success3">Obrigado!</string>
+    <string name="scr_received_info_error1">Ops...</string>
+    <string name="scr_received_info_error2">Parece que ocorreu um erro ao enviar as informações, por favor tentar novamente.</string>
+    <string name="scr_received_info_error3"></string>
+    <string name="scr_received_info_home_btn_text">Voltar ao início</string>
+
     <string name="enviando_dados">Enviando dados...</string>
     <string name="aguarde">Aguarde um instante...</string>
     <string name="dados_encaminhamento">Dados sendo encaminhados...</string>
