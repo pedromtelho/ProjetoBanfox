@@ -8,9 +8,23 @@
     <string name="scr_received_info_error2">Parece que ocorreu um erro ao enviar as informações, por favor tentar novamente.</string>
     <string name="scr_received_info_error3"></string>
     <string name="scr_received_info_home_btn_text">Voltar ao início</string>
+
+    <string name="scr_functionality_info1_top_btn_text">Tire uma foto do seu rosto</string>
+    <string name="scr_functionality_info1_bottom_btn_text">Certifique-se que seu rosto ficou bem enquadrado na foto</string>
+
+    <string name="scr_functionality_info2_top_btn_text">Tire uma foto do seu documento: CNH e RG </string>
+    <string name="scr_functionality_info2_bottom_btn_text">Certifique-se de que a foto do documento utilizado esteja atualizada </string>
+
+    <string name="scr_functionality_info3_top_btn_text">Tire uma foto sua segurando o documento  </string>
+    <string name="scr_functionality_info3_bottom_btn_text">Certifique-se que tanto o documento quanto seu rosto estejam bem focados </string>
+
+    <string name="scr_explanation_text">Este aplicativo tem como objetivo validar se o usuário que o esta utilizando é quem realmente diz ser. Esse processo é necessário para garantir a segurança da sua empresa e para evitar fraudes para com a Banfox. Nos desculpamos pelo incomodo e esperamos entregar a melhor experiencia de aquisição de crédito possível.
+Atenciosamente, Equipe Banfox.
+</string>
+
     <string name="scr_functionality_info_btn_text">Próximo passo</string>
-    <string name="scr_functionality_info2_btn_text">Primeiramente, tire uma selfie com somente seu rosto no quadro</string>
     <string name="scr_functionality_info_end_btn_text">Começar</string>
+
     <string name="scr_main_start_btn_text">Iniciar</string>
 
 
