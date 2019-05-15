@@ -21,7 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:text="TextView" />
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/scr_functionality_info2_top_btn_text" />
 
     </LinearLayout>
 
@@ -54,7 +58,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:text="TextView" />
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/scr_functionality_info2_bottom_btn_text" />
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -77,6 +85,7 @@
             android:text="@string/scr_functionality_info_btn_text"
             android:textSize="20sp"
             android:textColor="@color/colorVeryLightGreyBanfox"
+            android:fontFamily="@font/raleway_medium"
 
             android:layout_width="0dp"
             android:layout_height="match_parent"
