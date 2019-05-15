@@ -72,7 +72,7 @@
             android:layout_weight="25"/>
 
         <Button
-            android:id="@+id/home_btn"
+            android:id="@+id/functionality1_btn"
             android:background="@drawable/ds_button"
 
             android:text="@string/scr_functionality_info_btn_text"
