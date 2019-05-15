@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ExplanationActivity"></activity>
         <activity android:name=".functionalityInformation3"></activity>
         <activity android:name=".functionalityInformation2" />
         <activity android:name=".functionalityInformation" />
@@ -21,5 +22,5 @@
         </activity>
         <activity android:name=".ReceivedInfoActivity" />
     </application>
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 </manifest>

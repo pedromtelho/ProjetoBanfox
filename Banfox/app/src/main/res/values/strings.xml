@@ -19,4 +19,5 @@
     <string name="enviando_dados">Enviando dados...</string>
     <string name="aguarde">Aguarde um instante...</string>
     <string name="dados_encaminhamento">Dados sendo encaminhados...</string>
+    <string name="continuar">Continuar!</string>
 </resources>
