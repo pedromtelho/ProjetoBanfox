@@ -32,6 +32,7 @@
        android:layout_centerHorizontal="true"
        android:layout_marginTop="16dp"
        android:textSize="24sp"
+       android:fontFamily="@font/raleway_medium"
        android:textColor="#162d3f"
        android:visibility="invisible"/>
 
@@ -44,6 +45,7 @@
        android:layout_centerHorizontal="true"
        android:layout_marginTop="16dp"
        android:textSize="24sp"
+       android:fontFamily="@font/raleway_medium"
        android:textColor="#162d3f"
        android:visibility="invisible"/>
 
@@ -56,6 +58,7 @@
        android:layout_centerHorizontal="true"
        android:layout_marginTop="16dp"
        android:textSize="24sp"
+       android:fontFamily="@font/raleway_medium"
        android:textColor="#162d3f"
        android:visibility="invisible"/>
 </RelativeLayout>
