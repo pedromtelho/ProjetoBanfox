@@ -9,6 +9,7 @@
     <string name="scr_received_info_error3"></string>
     <string name="scr_received_info_home_btn_text">Voltar ao início</string>
     <string name="scr_functionality_info_btn_text">Próximo passo</string>
+    <string name="scr_functionality_info2_btn_text">Primeiramente, tire uma selfie com somente seu rosto no quadro</string>
     <string name="scr_functionality_info_end_btn_text">Começar</string>
     <string name="scr_main_start_btn_text">Iniciar</string>
 

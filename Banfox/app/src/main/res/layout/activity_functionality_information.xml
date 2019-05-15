@@ -21,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="100"
-            android:text="TextView" />
+            android:textSize="20sp"
+            android:text="@string/scr_functionality_info2_btn_text" />
 
     </LinearLayout>
 
