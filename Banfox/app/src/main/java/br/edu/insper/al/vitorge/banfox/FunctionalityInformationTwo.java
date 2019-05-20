@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class functionalityInformation2 extends AppCompatActivity {
+public class FunctionalityInformationTwo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +13,6 @@ public class functionalityInformation2 extends AppCompatActivity {
         setContentView(R.layout.activity_functionality_information2);
 
         Button button = findViewById(R.id.functionality2_btn);
-        button.setOnClickListener(v -> startActivity(new Intent(functionalityInformation2.this, functionalityInformation3.class)));
+        button.setOnClickListener(v -> startActivity(new Intent(FunctionalityInformationTwo.this, FunctionalityInformationThree.class)));
     }
 }
