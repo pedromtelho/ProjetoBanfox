@@ -2,6 +2,7 @@ package br.edu.insper.al.vitorge.banfox;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -106,6 +107,9 @@ public class CamOne extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePicture();
+
+                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
+                startActivity(intent);
             }
         });
     }

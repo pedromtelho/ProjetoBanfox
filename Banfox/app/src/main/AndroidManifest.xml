@@ -20,6 +20,7 @@
         <activity android:name=".FunctionalityInformationThree" />
         <activity android:name=".FunctionalityInformationTwo" />
         <activity android:name=".FunctionalityInformation" />
+        <activity android:name=".LoadingInformations" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
