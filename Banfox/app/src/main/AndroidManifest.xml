@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.edu.insper.al.vitorge.banfox">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.hardware.camera2.full"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExplanationActivity"></activity>
-        <activity android:name=".functionalityInformation3"></activity>
-        <activity android:name=".functionalityInformation2" />
-        <activity android:name=".functionalityInformation" />
+        <activity android:name=".CamOne"></activity>
+        <activity android:name=".ExplanationActivity" />
+        <activity android:name=".FunctionalityInformationThree" />
+        <activity android:name=".FunctionalityInformationTwo" />
+        <activity android:name=".FunctionalityInformation" />
+        <activity android:name=".LoadingInformations" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,5 +30,5 @@
         </activity>
         <activity android:name=".ReceivedInfoActivity" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 </manifest>

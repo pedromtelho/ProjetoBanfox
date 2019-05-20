@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
-    android:background="@color/colorVeryLightGreyBanfox"
     tools:context=".ReceivedInfoActivity">
 
     <LinearLayout
