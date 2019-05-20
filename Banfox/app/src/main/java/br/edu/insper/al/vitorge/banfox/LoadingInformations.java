@@ -1,5 +1,6 @@
 package br.edu.insper.al.vitorge.banfox;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,10 @@ public class LoadingInformations extends AppCompatActivity {
                             else if (mProgressStatus > 60 && mProgressStatus < 100){
                                 mLoadingTextTwo.setVisibility(View.INVISIBLE);
                                 mLoadingTextThree.setVisibility(View.VISIBLE);
+                            } else if (mProgressStatus == 100) {
+                                Intent intent = new Intent(LoadingInformations.this, ReceivedInfoActivity.class);
+                                intent.putExtra("success", true);
+                                startActivity(intent);
                             }
                         }
                     });
