@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CamOne">
+
     <TextureView
         android:id="@+id/textureView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <Button
         android:id="@+id/btnCapture"
         android:background="@drawable/ds_button"
@@ -20,5 +22,14 @@
         android:layout_weight="50"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_switch_camera"
+        android:drawableBottom="@drawable/ic_flip"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/ds_button"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>
