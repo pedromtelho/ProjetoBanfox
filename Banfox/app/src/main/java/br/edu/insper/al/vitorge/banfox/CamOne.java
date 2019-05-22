@@ -50,6 +50,9 @@ public class CamOne extends AppCompatActivity {
     private static final String CAMERA_FRONT = "1";
     private static final String CAMERA_BACK = "0";
 
+    private Button buttonSend;
+    private Button buttonDel;
+
 
     //Check do estado de orientação dos outputs das imagens
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
@@ -70,15 +73,16 @@ public class CamOne extends AppCompatActivity {
     //Salvar na pasta
     private File file;
     private static final int REQUEST_CAMERA_PREMISSION = 200;
-    private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
+    private byte[] bytes;
+
 
 
     CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice camera) {
-
+            textureView.setVisibility(View.VISIBLE);
             cameraDevice = camera;
             createCameraPreview();
         }
@@ -100,10 +104,14 @@ public class CamOne extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam_one);
+
         textureView = findViewById(R.id.textureView);
         assert textureView != null;
 
         buttonSwitch = findViewById(R.id.button_switch_camera);
+        buttonSend = findViewById(R.id.buttonSendPhoto);
+        buttonDel = findViewById(R.id.buttonDelPhoto);
+
         buttonSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,9 +125,31 @@ public class CamOne extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePicture();
+                btnCapture.setVisibility(View.INVISIBLE);
+                buttonSwitch.setVisibility(View.INVISIBLE);
+                buttonSend.setVisibility(View.VISIBLE);
+                buttonDel.setVisibility(View.VISIBLE);
 
-//                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
-//                startActivity(intent);
+            }
+        });
+
+        buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                savePhoto(bytes);
+                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createCameraPreview();
+                btnCapture.setVisibility(View.VISIBLE);
+                buttonSwitch.setVisibility(View.VISIBLE);
+                buttonSend.setVisibility(View.INVISIBLE);
+                buttonDel.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -147,8 +177,7 @@ public class CamOne extends AppCompatActivity {
                 List<Surface> outputSurface = new ArrayList<>(2);
                 outputSurface.add(reader.getSurface());
                 outputSurface.add(new Surface(textureView.getSurfaceTexture()));
-
-                CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
+                final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
                 captureBuilder.addTarget(reader.getSurface());
                 captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
 
@@ -165,39 +194,13 @@ public class CamOne extends AppCompatActivity {
 
                 file = new File(Environment.getExternalStorageDirectory()+"/"+UUID.randomUUID().toString()+".jpg");
                 ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener(){
-
                     @Override
                     public void onImageAvailable(ImageReader reader) {
-                        Image image = null;
-                        try{
-                            image = reader.acquireLatestImage();
-                            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-                            byte[] bytes = new byte[buffer.capacity()];
-                            buffer.get(bytes);
-                            save(bytes);
-                        }
-                        catch (FileNotFoundException e){
-                            e.printStackTrace();
-                        }
-                        catch (IOException e){
-                            e.printStackTrace();
-                        }
-                        finally {
-                            if(image!=null){
-                                image.close();
-                            }
-                        }
-                    }
-                    private void save(byte[] bytes) throws IOException {
-                        OutputStream outputStream = null;
-                        try {
-                            outputStream = new FileOutputStream(file);
-                            outputStream.write(bytes);
-                        }
-                        finally {
-                            if (outputStream!=null)
-                                outputStream.close();
-                        }
+                        Image image;
+                        image = reader.acquireLatestImage();
+                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                        bytes = new byte[buffer.capacity()];
+                        buffer.get(bytes);
                     }
                 };
                 reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
@@ -205,9 +208,7 @@ public class CamOne extends AppCompatActivity {
                 final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
                     @Override
                     public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
-                        super.onCaptureCompleted(session, request, result);
-                        Toast.makeText(CamOne.this, "Saved "+file, Toast.LENGTH_SHORT).show();
-                        createCameraPreview();
+
                     }
                 };
 
@@ -230,6 +231,29 @@ public class CamOne extends AppCompatActivity {
 
         } catch (CameraAccessException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void savePhoto(byte[] bytes){
+        OutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            outputStream.write(bytes);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (outputStream!=null)
+                try{
+                    outputStream.close();
+                }
+            catch (IOException e) {
+                    e.printStackTrace();
+                }
         }
     }
 
