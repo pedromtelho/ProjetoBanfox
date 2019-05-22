@@ -9,6 +9,9 @@
     <string name="scr_received_info_error3"></string>
     <string name="scr_received_info_home_btn_text">Voltar ao início</string>
 
+    <string name="scr_Reader_btn_text">Scanear</string>
+    <string name="scr_Reader_text">Leia o Qr Code para que possamos identifica-lo</string>
+
     <string name="scr_functionality_info1_top_btn_text">Tire uma foto do seu rosto</string>
     <string name="scr_functionality_info1_bottom_btn_text">Certifique-se que seu rosto ficou bem enquadrado na foto</string>
 
@@ -32,6 +35,6 @@ Atenciosamente, Equipe Banfox.
     <string name="aguarde">Aguarde um instante...</string>
     <string name="dados_encaminhamento">Dados sendo encaminhados...</string>
     <string name="continuar">Continuar!</string>
-    
+
     <string name="captura_foto">Capture</string>
 </resources>
