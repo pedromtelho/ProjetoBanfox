@@ -41,7 +41,10 @@ public class Reader extends AppCompatActivity {
                 Toast.makeText(this,"você cancelou o scan",Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(this,result.getContents(),Toast.LENGTH_LONG).show();
+                String message = result.getContents();
+                Intent intent = new Intent(Reader.this, FunctionalityInformation.class);
+                intent.putExtra("name", message);
+                startActivity(intent);
             }
         }
         else {
