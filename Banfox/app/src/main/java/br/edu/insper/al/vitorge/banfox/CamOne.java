@@ -71,9 +71,6 @@ public class CamOne extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
 
-    int photo;
-    byte[] source, target;
-    CompareFaces faceCompare = new CompareFaces();
 
     CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
         @Override
@@ -110,12 +107,9 @@ public class CamOne extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePicture();
-                photo += 1;
-//                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
-//                startActivity(intent);
-                if (photo >= 2) {
-                    faceCompare.compareFaces(source, target);
-                }
+
+                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
+                startActivity(intent);
             }
         });
     }
@@ -164,12 +158,6 @@ public class CamOne extends AppCompatActivity {
                             byte[] bytes = new byte[buffer.capacity()];
                             buffer.get(bytes);
                             save(bytes);
-
-                            if (photo == 1) {
-                                source = bytes;
-                            } else {
-                                target = bytes;
-                            }
                         }
                         catch (FileNotFoundException e){
                             e.printStackTrace();
