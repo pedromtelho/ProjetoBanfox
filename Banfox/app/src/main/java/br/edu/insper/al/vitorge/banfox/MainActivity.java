@@ -50,6 +50,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Button button = findViewById(R.id.home_btn);
-        button.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExplanationActivity.class)));
+        button.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Reader.class)));
     }
 }
