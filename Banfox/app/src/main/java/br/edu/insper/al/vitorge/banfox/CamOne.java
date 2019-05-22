@@ -46,6 +46,9 @@ import java.util.UUID;
 public class CamOne extends AppCompatActivity {
     private Button btnCapture;
     private TextureView textureView;
+    private Button buttonSwitch;
+    private static final String CAMERA_FRONT = "1";
+    private static final String CAMERA_BACK = "0";
 
 
     //Check do estado de orientação dos outputs das imagens
@@ -57,7 +60,7 @@ public class CamOne extends AppCompatActivity {
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
 
-    private String cameraId;
+    private String cameraId = CAMERA_FRONT;
     private CameraDevice cameraDevice;
     private CameraCaptureSession cameraCaptureSessions;
     private CaptureRequest.Builder captureRequestBuilder;
@@ -75,6 +78,7 @@ public class CamOne extends AppCompatActivity {
     CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice camera) {
+
             cameraDevice = camera;
             createCameraPreview();
         }
@@ -96,10 +100,16 @@ public class CamOne extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam_one);
-
-
         textureView = findViewById(R.id.textureView);
         assert textureView != null;
+
+        buttonSwitch = findViewById(R.id.button_switch_camera);
+        buttonSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchCamera();
+            }
+        });
 
         textureView.setSurfaceTextureListener(textureListener);
         btnCapture = findViewById(R.id.btnCapture);
@@ -108,8 +118,8 @@ public class CamOne extends AppCompatActivity {
             public void onClick(View v) {
                 takePicture();
 
-                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
-                startActivity(intent);
+//                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
+//                startActivity(intent);
             }
         });
     }
@@ -125,8 +135,8 @@ public class CamOne extends AppCompatActivity {
                 jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
 
                 //Capturar imagem com tamanho customizado
-                int width = 640;
-                int height = 480;
+                int width = 480;
+                int height = 640;
                 if(jpegSizes!=null && jpegSizes.length > 0){
                     width = jpegSizes[0].getWidth();
                     height = jpegSizes[0].getHeight();
@@ -145,7 +155,14 @@ public class CamOne extends AppCompatActivity {
 
                 //Check da orientação baseada no aparelho
                 int rotation = getWindowManager().getDefaultDisplay().getRotation();
-                captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
+
+                if (cameraDevice.getId() == "1"){
+                    captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, 270);
+                }
+                else{
+                    captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
+                }
+
                 file = new File(Environment.getExternalStorageDirectory()+"/"+UUID.randomUUID().toString()+".jpg");
                 ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener(){
 
@@ -191,7 +208,6 @@ public class CamOne extends AppCompatActivity {
                         super.onCaptureCompleted(session, request, result);
                         Toast.makeText(CamOne.this, "Saved "+file, Toast.LENGTH_SHORT).show();
                         createCameraPreview();
-
                     }
                 };
 
@@ -261,7 +277,7 @@ public class CamOne extends AppCompatActivity {
     private void openCamera(){
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try{
-            cameraId = manager.getCameraIdList()[0];
+//            cameraId = manager.getCameraIdList()[0];
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
             StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
             assert map != null;
@@ -329,8 +345,38 @@ public class CamOne extends AppCompatActivity {
 
     @Override
     protected void onPause(){
+        closeCamera();
         stopBackgroundThread();
         super.onPause();
+    }
+
+    public void switchCamera() {
+        System.out.println(cameraId);
+        if (cameraId.equals(CAMERA_FRONT)) {
+            cameraId = CAMERA_BACK;
+            closeCamera();
+            reopenCamera();
+        }
+        else if (cameraId.equals(CAMERA_BACK)) {
+            cameraId = CAMERA_FRONT;
+            closeCamera();
+            reopenCamera();
+        }
+    }
+
+    public void reopenCamera() {
+        if (textureView.isAvailable()) {
+            openCamera();
+        } else {
+            textureView.setSurfaceTextureListener(textureListener);
+        }
+    }
+
+    private void closeCamera() {
+        if (null != cameraDevice) {
+            cameraDevice.close();
+            cameraDevice = null;
+        }
     }
 
     private void stopBackgroundThread() {
