@@ -1,5 +1,6 @@
 package br.edu.insper.al.vitorge.banfox;
 
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 
@@ -20,7 +21,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class FaceCompare {
+public class FaceCompare extends AsyncTask<String, Void, Void> {
 
     String accessKey = "AKIAZNVK27JUCYBIWOXN";
     String secretKey = "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";
@@ -29,7 +30,10 @@ public class FaceCompare {
 
     }
 
-    public void compareFaces(String sourceImage, String targetImage) {
+    @Override
+    public Void doInBackground(String... strings) {
+        String sourceImage = strings[0];
+        String targetImage = strings[1];
         Float similarityThreshold = 70F;
         ByteBuffer sourceImageBytes = null;
         ByteBuffer targetImageBytes = null;
@@ -87,5 +91,6 @@ public class FaceCompare {
                 + " face(s) that did not match");
         System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
         System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
+        return null;
     }
 }
