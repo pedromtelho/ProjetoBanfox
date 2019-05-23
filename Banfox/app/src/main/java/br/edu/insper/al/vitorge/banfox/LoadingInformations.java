@@ -24,8 +24,8 @@ public class LoadingInformations extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_informations);
 
-        ByteBuffer sourceImage = ((Global) this.getApplication()).getFacePicture();
-        ByteBuffer targetImage = ((Global) this.getApplication()).getGroupPicture();
+        String sourceImage = ((Global) this.getApplication()).getFacePicture();
+        String targetImage = ((Global) this.getApplication()).getGroupPicture();
 
         FaceCompare faceCompare = new FaceCompare();
         faceCompare.compareFaces(sourceImage, targetImage);
@@ -35,37 +35,6 @@ public class LoadingInformations extends AppCompatActivity {
         mLoadingTextTwo = findViewById(R.id.LoadingMiddleTextView);
         mLoadingTextThree = findViewById(R.id.LoadingFinalTextView);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(mProgressStatus < 100){
-                    mProgressStatus++;
-                    SystemClock.sleep(70);
 
-                    mHandler.post(new Runnable(){
-                        @Override
-                        public void run(){
-                            mProgressBar.setProgress(mProgressStatus);
-                            if (mProgressStatus > 0 && mProgressStatus<30){
-                                mLoadingText.setVisibility(View.VISIBLE);
-                            }
-
-                            if (mProgressStatus > 35 && mProgressStatus < 60){
-                                mLoadingText.setVisibility(View.INVISIBLE);
-                                mLoadingTextTwo.setVisibility(View.VISIBLE);
-                            }
-                            else if (mProgressStatus > 60 && mProgressStatus < 100){
-                                mLoadingTextTwo.setVisibility(View.INVISIBLE);
-                                mLoadingTextThree.setVisibility(View.VISIBLE);
-                            } else if (mProgressStatus == 100) {
-                                Intent intent = new Intent(LoadingInformations.this, ReceivedInfoActivity.class);
-                                intent.putExtra("success", true);
-                                startActivity(intent);
-                            }
-                        }
-                    });
-                }
-            }
-        }).start();
     }
 }

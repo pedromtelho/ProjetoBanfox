@@ -29,32 +29,31 @@ public class FaceCompare {
 
     }
 
-    public void compareFaces(ByteBuffer sourceImageBytes, ByteBuffer targetImageBytes) {
+    public void compareFaces(String sourceImage, String targetImage) {
         Float similarityThreshold = 70F;
-//        String sourceImage = Environment.getExternalStorageDirectory()+"/"+"photo0"+".jpeg";
-//        String targetImage = Environment.getExternalStorageDirectory()+"/"+"photo1"+".jpeg";
-//        ByteBuffer sourceImageBytes = null;
-//        ByteBuffer targetImageBytes = null;
-//
+        ByteBuffer sourceImageBytes = null;
+        ByteBuffer targetImageBytes = null;
+
         AmazonRekognition rekognitionClient = new AmazonRekognitionClient(new BasicAWSCredentials(this.accessKey, this.secretKey));
-//
-//        //Load source and target images and create input parameters
-//        try (InputStream inputStream = new FileInputStream(new File(sourceImage))) {
-//            sourceImageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
-//        }
-//        catch(Exception e)
-//        {
-//            System.out.println("Failed to load source image " + sourceImage);
-//            System.exit(1);
-//        }
-//        try (InputStream inputStream = new FileInputStream(new File(targetImage))) {
-//            targetImageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
-//        }
-//        catch(Exception e)
-//        {
-//            System.out.println("Failed to load target images: " + targetImage);
-//            System.exit(1);
-//        }
+
+        //Load source and target images and create input parameters
+        try (InputStream inputStream = new FileInputStream(new File(sourceImage))) {
+            sourceImageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
+        }
+        catch(Exception e)
+        {
+            System.out.println("Failed to load source image " + sourceImage);
+            System.exit(1);
+        }
+        try (InputStream inputStream = new FileInputStream(new File(targetImage))) {
+            targetImageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
+        }
+        catch(Exception e)
+        {
+            System.out.println("Failed to load target images: " + targetImage);
+            System.exit(1);
+        }
+
 
         Image source = new Image()
                 .withBytes(sourceImageBytes);
