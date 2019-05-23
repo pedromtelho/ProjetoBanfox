@@ -3,14 +3,16 @@ package br.edu.insper.al.vitorge.banfox;
 import android.app.Application;
 import android.location.Location;
 
+import java.nio.ByteBuffer;
+
 public class Global extends Application {
 
     private String userName;
     private Location userLocation;
     private int pictureNumber;
-    private byte[] facePicture;
-    private byte[] idPicture;
-    private byte[] groupPicture;
+    private ByteBuffer facePicture;
+    private ByteBuffer idPicture;
+    private ByteBuffer groupPicture;
 
     public String getUserName() {
         return this.userName;
@@ -36,27 +38,27 @@ public class Global extends Application {
         this.userLocation = userLocation;
     }
 
-    public byte[] getFacePicture() {
+    public ByteBuffer getFacePicture() {
         return facePicture;
     }
 
-    public void setFacePicture(byte[] facePicture) {
+    public void setFacePicture(ByteBuffer facePicture) {
         this.facePicture = facePicture;
     }
 
-    public byte[] getIdPicture() {
+    public ByteBuffer getIdPicture() {
         return idPicture;
     }
 
-    public void setIdPicture(byte[] idPicture) {
+    public void setIdPicture(ByteBuffer idPicture) {
         this.idPicture = idPicture;
     }
 
-    public byte[] getGroupPicture() {
+    public ByteBuffer getGroupPicture() {
         return groupPicture;
     }
 
-    public void setGroupPicture(byte[] groupPicture) {
+    public void setGroupPicture(ByteBuffer groupPicture) {
         this.groupPicture = groupPicture;
     }
 }

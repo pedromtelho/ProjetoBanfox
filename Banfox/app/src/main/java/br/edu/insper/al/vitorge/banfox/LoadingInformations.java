@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.nio.ByteBuffer;
+
 public class LoadingInformations extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private TextView mLoadingText;
@@ -21,6 +23,12 @@ public class LoadingInformations extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_informations);
+
+        ByteBuffer sourceImage = ((Global) this.getApplication()).getFacePicture();
+        ByteBuffer targetImage = ((Global) this.getApplication()).getGroupPicture();
+
+        FaceCompare faceCompare = new FaceCompare();
+        faceCompare.compareFaces(sourceImage, targetImage);
 
         mProgressBar = findViewById(R.id.progressbar);
         mLoadingText = findViewById(R.id.LoadingSendingTextView);
