@@ -42,8 +42,8 @@ public class Reader extends AppCompatActivity {
             }
             else {
                 String message = result.getContents();
-                Intent intent = new Intent(Reader.this, FunctionalityInformation.class);
-                intent.putExtra("name", message);
+                ((Global) this.getApplication()).setUserName(message);
+                Intent intent = new Intent(Reader.this, ExplanationActivity.class);
                 startActivity(intent);
             }
         }

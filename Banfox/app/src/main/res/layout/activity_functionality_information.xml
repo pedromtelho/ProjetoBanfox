@@ -33,16 +33,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="35"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:weightSum="100"
         tools:context=".FunctionalityInformation">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="75"
-            app:srcCompat="@drawable/ic_selfie" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginStart="30sp"
+            android:layout_marginEnd="30sp"
+            app:srcCompat="@drawable/ic_identity_card" />
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:layout_marginEnd="30sp"
+            app:srcCompat="@drawable/ic_selfie_2" />
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
