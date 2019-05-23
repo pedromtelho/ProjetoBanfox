@@ -8,9 +8,9 @@ public class Global extends Application {
     private String userName;
     private Location userLocation;
     private int pictureNumber;
-    private byte[] facePicture;
-    private byte[] idPicture;
-    private byte[] groupPicture;
+    private String facePicture;
+    private String idPicture;
+    private String groupPicture;
 
     public String getUserName() {
         return this.userName;
@@ -36,27 +36,27 @@ public class Global extends Application {
         this.userLocation = userLocation;
     }
 
-    public byte[] getFacePicture() {
+    public String getFacePicture() {
         return facePicture;
     }
 
-    public void setFacePicture(byte[] facePicture) {
+    public void setFacePicture(String facePicture) {
         this.facePicture = facePicture;
     }
 
-    public byte[] getIdPicture() {
+    public String getIdPicture() {
         return idPicture;
     }
 
-    public void setIdPicture(byte[] idPicture) {
+    public void setIdPicture(String idPicture) {
         this.idPicture = idPicture;
     }
 
-    public byte[] getGroupPicture() {
+    public String getGroupPicture() {
         return groupPicture;
     }
 
-    public void setGroupPicture(byte[] groupPicture) {
+    public void setGroupPicture(String groupPicture) {
         this.groupPicture = groupPicture;
     }
 }
