@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ((Global) this.getApplication()).setPictureNumber(0);
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onSuccess(Location location) {
                     if (location != null) {
                         clientLocation = location;
+                        ((Global) MainActivity.this.getApplication()).setUserLocation(clientLocation);
                         Log.d("message", String.valueOf(clientLocation));
                     }
                 }

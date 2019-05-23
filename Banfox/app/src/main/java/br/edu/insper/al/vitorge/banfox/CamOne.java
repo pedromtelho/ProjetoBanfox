@@ -1,6 +1,7 @@
 package br.edu.insper.al.vitorge.banfox;
 
 import android.Manifest;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -49,6 +50,8 @@ public class CamOne extends AppCompatActivity {
     private Button buttonSwitch;
     private static final String CAMERA_FRONT = "1";
     private static final String CAMERA_BACK = "0";
+    private int pictureNumber;
+    private Class nextClass;
 
     private Button buttonSend;
     private Button buttonDel;
@@ -105,6 +108,22 @@ public class CamOne extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam_one);
 
+        pictureNumber = ((Global) this.getApplication()).getPictureNumber();
+
+        switch (pictureNumber) {
+            case 0:
+                nextClass = FunctionalityInformation.class;
+                break;
+            case 1:
+                nextClass = FunctionalityInformation.class;
+                break;
+            case 2:
+                nextClass = LoadingInformations.class;
+                break;
+            default:
+                break;
+        }
+
         textureView = findViewById(R.id.textureView);
         assert textureView != null;
 
@@ -137,7 +156,21 @@ public class CamOne extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 savePhoto(bytes);
-                Intent intent = new Intent(CamOne.this, LoadingInformations.class);
+                switch (pictureNumber) {
+                    case 0:
+                        ((Global) CamOne.this.getApplication()).setFacePicture(bytes);
+                        break;
+                    case 1:
+                        ((Global) CamOne.this.getApplication()).setIdPicture(bytes);
+                        break;
+                    case 2:
+                        ((Global) CamOne.this.getApplication()).setGroupPicture(bytes);
+                        break;
+                    default:
+                        break;
+                }
+                ((Global) CamOne.this.getApplication()).setPictureNumber(pictureNumber + 1);
+                Intent intent = new Intent(CamOne.this, nextClass);
                 startActivity(intent);
             }
         });
