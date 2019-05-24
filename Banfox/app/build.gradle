@@ -10,6 +10,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', "AccessKey", AmazonAWSRekognition_AccessKey
+        resValue 'string', "access_key", AmazonAWSRekognition_AccessKey
+        buildConfigField 'String', "SecretKey", AmazonAWSRekognition_SecretKey
+        resValue 'string', "secret_key", AmazonAWSRekognition_SecretKey
     }
     buildTypes {
         release {

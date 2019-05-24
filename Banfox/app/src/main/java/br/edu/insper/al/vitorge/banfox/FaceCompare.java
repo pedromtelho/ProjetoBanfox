@@ -23,9 +23,6 @@ import java.util.List;
 
 public class FaceCompare extends AsyncTask<String, Void, Void> {
 
-    String accessKey = "AKIAZNVK27JUCYBIWOXN";
-    String secretKey = "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";
-
     public FaceCompare() {
 
     }
@@ -38,7 +35,7 @@ public class FaceCompare extends AsyncTask<String, Void, Void> {
         ByteBuffer sourceImageBytes = null;
         ByteBuffer targetImageBytes = null;
 
-        AmazonRekognition rekognitionClient = new AmazonRekognitionClient(new BasicAWSCredentials(this.accessKey, this.secretKey));
+        AmazonRekognition rekognitionClient = new AmazonRekognitionClient(new BasicAWSCredentials(BuildConfig.AccessKey, BuildConfig.SecretKey));
 
         //Load source and target images and create input parameters
         try (InputStream inputStream = new FileInputStream(new File(sourceImage))) {
@@ -78,7 +75,6 @@ public class FaceCompare extends AsyncTask<String, Void, Void> {
         for (CompareFacesMatch match: faceDetails){
             ComparedFace face= match.getFace();
             BoundingBox position = face.getBoundingBox();
-            Log.i("ACERTO CARAI", face.getConfidence().toString());
             System.out.println("Face at " + position.getLeft().toString()
                     + " " + position.getTop()
                     + " matches with " + face.getConfidence().toString()
