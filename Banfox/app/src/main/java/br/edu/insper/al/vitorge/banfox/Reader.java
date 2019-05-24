@@ -25,7 +25,7 @@ public class Reader extends AppCompatActivity {
             public void onClick(View view) {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                integrator.setPrompt("Scan");
+                integrator.setPrompt("Posicionar a linha vermelha sobre o QR Code.");
                 integrator.setCameraId(0);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
@@ -38,12 +38,17 @@ public class Reader extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null){
             if (result.getContents()== null){
-                Toast.makeText(this,"você cancelou o scan",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Scan cancelado.",Toast.LENGTH_SHORT).show();
             }
             else {
                 String message = result.getContents();
+
+                Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+                toast.show();
+
                 ((Global) this.getApplication()).setUserName(message);
-                Intent intent = new Intent(Reader.this, ExplanationActivity.class);
+
+                Intent intent = new Intent(Reader.this, FunctionalityInformation.class);
                 startActivity(intent);
             }
         }

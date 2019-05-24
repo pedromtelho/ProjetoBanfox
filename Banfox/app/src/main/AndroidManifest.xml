@@ -29,8 +29,6 @@
         <activity android:name=".Reader"></activity>
         <activity android:name=".CamOne" />
         <activity android:name=".ExplanationActivity" />
-        <activity android:name=".FunctionalityInformationThree" />
-        <activity android:name=".FunctionalityInformationTwo" />
         <activity android:name=".FunctionalityInformation" />
         <activity android:name=".LoadingInformations" />
         <activity android:name=".MainActivity">

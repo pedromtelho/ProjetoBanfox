@@ -1,6 +1,40 @@
 <resources>
     <string name="app_name">Banfox</string>
 
+    <string name="scr_MainActivity_start_btn">Iniciar</string>
+    <string name="scr_MainActivity_logoView_description">Logo da empresa.</string>
+    <string name="scr_MainActivity_iconView_description">Ícone de leitura facial.</string>
+
+
+
+    <string name="scr_Reader_scan_btn">Escanear</string>
+    <string name="scr_Reader_text">Leia o QR Code para que possamos identificá-lo.</string>
+    <string name="scr_Reader_iconView_description">Ícone de scan de QR Code.</string>
+
+
+
+    <string name="scr_ExplanationActivity_text">Este aplicativo tem como objetivo validar se o usuário que o esta utilizando é quem realmente diz ser.\nEsse processo é necessário para garantir a segurança da sua empresa e para evitar fraudes para com a Banfox.\nNos desculpamos pelo incômodo e esperamos entregar a melhor experiencia de aquisição de crédito possível.\n\nAtenciosamente, Equipe Banfox.</string>
+    <string name="scr_ExplanationActivity_nextScr_btn">Continuar</string>
+
+
+
+    <string name="scr_PictureGuide_takePicture_btn">Tirar foto</string>
+
+    <string name="scr_PictureGuide1_textTop">Tire uma foto do seu rosto.</string>
+    <string name="scr_PictureGuide1_textBottom">Tenha certeza que de seu rosto está bem enquadrado e focado, além de que não existam outras pessoas na foto.</string>
+    <string name="scr_PictureGuide1_iconView_description">Ícone de tirar foto do usuário.</string>
+
+    <string name="scr_PictureGuide2_textTop">Tire uma foto do seu documento: CNH ou RG.</string>
+    <string name="scr_PictureGuide2_textBottom">Tenha certeza de que o documento está bem enquadrado e focado.</string>
+    <string name="scr_PictureGuide2_iconView_description">Ícone de tirar foto do documento.</string>
+
+    <string name="scr_PictureGuide3_textTop">Tire uma foto sua segurando o documento  </string>
+    <string name="scr_PictureGuide3_textBottom">Certifique-se que tanto o documento quanto seu rosto estejam bem focados </string>
+    <string name="scr_PictureGuide3_iconView1_description">Ícone de tirar foto do documento.</string>
+    <string name="scr_PictureGuide3_iconView2_description">Ícone de tirar foto do usuário.</string>
+
+
+
     <string name="scr_received_info_success1">Pronto!</string>
     <string name="scr_received_info_success2">Suas informações foram enviadas e estão sendo processadas. Volte ao site para continuar seu cadastro.</string>
     <string name="scr_received_info_success3">Obrigado!</string>
@@ -9,32 +43,15 @@
     <string name="scr_received_info_error3"></string>
     <string name="scr_received_info_home_btn_text">Voltar ao início</string>
 
-    <string name="scr_Reader_btn_text">Scanear</string>
-    <string name="scr_Reader_text">Leia o Qr Code para que possamos identifica-lo</string>
 
-    <string name="scr_functionality_info1_top_btn_text">Tire uma foto do seu rosto</string>
-    <string name="scr_functionality_info1_bottom_btn_text">Certifique-se que seu rosto ficou bem enquadrado na foto</string>
 
-    <string name="scr_functionality_info2_top_btn_text">Tire uma foto do seu documento: CNH e RG </string>
-    <string name="scr_functionality_info2_bottom_btn_text">Certifique-se de que a foto do documento utilizado esteja atualizada </string>
 
-    <string name="scr_functionality_info3_top_btn_text">Tire uma foto sua segurando o documento  </string>
-    <string name="scr_functionality_info3_bottom_btn_text">Certifique-se que tanto o documento quanto seu rosto estejam bem focados </string>
 
-    <string name="scr_explanation_text">Este aplicativo tem como objetivo validar se o usuário que o esta utilizando é quem realmente diz ser. Esse processo é necessário para garantir a segurança da sua empresa e para evitar fraudes para com a Banfox. Nos desculpamos pelo incomodo e esperamos entregar a melhor experiencia de aquisição de crédito possível.
-Atenciosamente, Equipe Banfox.
-</string>
-
-    <string name="scr_functionality_info_btn_text">Próximo passo</string>
-    <string name="scr_functionality_info_end_btn_text">Começar</string>
-
-    <string name="scr_main_start_btn_text">Iniciar</string>
 
 
     <string name="enviando_dados">Enviando dados...</string>
     <string name="aguarde">Aguarde um instante...</string>
     <string name="dados_encaminhamento">Dados sendo encaminhados...</string>
-    <string name="continuar">Continuar!</string>
 
     <string name="captura_foto">Capture</string>
 </resources>

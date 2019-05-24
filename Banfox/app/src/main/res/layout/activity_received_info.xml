@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".ReceivedInfoActivity">
+    tools:context=".ReceivedInfoActivity"
+    android:background="@color/background"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +57,7 @@
             android:textSize="40sp"
             android:textAlignment="center"
             android:gravity="center_vertical"
-            android:textColor="@color/colorGreyBanfox"
+            android:textColor="@color/colorVeryDarkGreyBanfox"
             android:fontFamily="@font/raleway_bold"
 
             android:layout_width="match_parent"
@@ -77,7 +79,7 @@
             android:textSize="20sp"
             android:textAlignment="center"
             android:gravity="center_vertical"
-            android:textColor="@color/colorGreyBanfox"
+            android:textColor="@color/colorVeryDarkGreyBanfox"
             android:fontFamily="@font/raleway_medium"
 
             android:layout_width="match_parent"
@@ -98,7 +100,7 @@
             android:textSize="20sp"
             android:textAlignment="center"
             android:gravity="center_vertical"
-            android:textColor="@color/colorGreyBanfox"
+            android:textColor="@color/colorVeryDarkGreyBanfox"
             android:fontFamily="@font/raleway_bold"
 
             android:layout_width="match_parent"
@@ -120,7 +122,7 @@
             android:text="@string/scr_received_info_home_btn_text"
             android:textSize="20sp"
             android:textColor="@color/colorVeryLightGreyBanfox"
-            android:fontFamily="@font/raleway_bold"
+            android:fontFamily="@font/raleway_medium"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

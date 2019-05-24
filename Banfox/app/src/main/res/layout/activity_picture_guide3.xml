@@ -6,26 +6,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".FunctionalityInformationTwo">
+    tools:context=".FunctionalityInformation"
+    android:background="@color/background"
+    >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="20"
+
         android:orientation="vertical"
-        android:weightSum="100"
-        tools:context=".FunctionalityInformationTwo">
+        >
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="100"
+            android:layout_height="match_parent"
+
             android:textAlignment="center"
             android:gravity="center_vertical"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:fontFamily="@font/raleway_medium"
-            android:text="@string/scr_functionality_info3_top_btn_text" />
+            android:textColor="@color/colorVeryDarkGreyBanfox"
+            android:text="@string/scr_PictureGuide3_textTop"
+            />
 
     </LinearLayout>
 
@@ -33,90 +37,80 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="40"
+
         android:orientation="horizontal"
         android:weightSum="100"
-        tools:context=".FunctionalityInformationTwo">
+        >
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:layout_marginStart="30sp"
-            android:layout_marginEnd="30sp"
-            app:srcCompat="@drawable/ic_identity_card" />
 
+            app:srcCompat="@drawable/ic_identity_card"
+            android:contentDescription="@string/scr_PictureGuide3_iconView1_description"
+            />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:layout_marginEnd="30sp"
-            app:srcCompat="@drawable/ic_selfie_2" />
 
-
+            app:srcCompat="@drawable/ic_selfie_2"
+            android:contentDescription="@string/scr_PictureGuide3_iconView2_description"
+            />
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="20"
+
         android:orientation="vertical"
-        android:weightSum="100"
-        tools:context=".FunctionalityInformationTwo">
+        >
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="100"
+            android:layout_height="match_parent"
+
             android:textAlignment="center"
             android:gravity="center_vertical"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:fontFamily="@font/raleway_medium"
-            android:text="@string/scr_functionality_info3_bottom_btn_text" />
+            android:textColor="@color/colorVeryDarkGreyBanfox"
+            android:text="@string/scr_PictureGuide3_textBottom"
+            />
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:orientation="horizontal"
-        android:weightSum="100"
-        tools:context=".FunctionalityInformationTwo">
+        android:layout_weight="20"
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="25"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
 
         <Button
-            android:id="@+id/next_btn"
+            android:id="@+id/nextScr_btn"
             android:background="@drawable/ds_button"
 
-            android:text="@string/scr_functionality_info_end_btn_text"
+            android:text="@string/scr_PictureGuide_takePicture_btn"
             android:textSize="20sp"
             android:textColor="@color/colorVeryLightGreyBanfox"
             android:fontFamily="@font/raleway_medium"
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
             android:padding="20sp"
             />
-
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="25"/>
-
     </LinearLayout>
-
-
-
-
-
 </LinearLayout>
+
+
+
+

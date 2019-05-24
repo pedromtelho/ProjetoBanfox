@@ -1,68 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
     tools:context=".ExplanationActivity"
-    android:background="@color/colorVeryLightGreyBanfox">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15" />
+    android:background="@color/background"
+    >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="58"
-        android:text="@string/scr_explanation_text"
-        android:textAlignment="center"
-        android:fontFamily="@font/raleway_medium"
-        android:textColor="@color/colorVeryDarkBlueBanfox"
-        android:textSize="25sp"/>
+        android:layout_weight="80"
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5" />
+        android:text="@string/scr_ExplanationActivity_text"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/raleway_medium"
+        android:textColor="@color/colorVeryDarkGreyBanfox"
+        android:textSize="20sp"
+
+        android:layout_marginStart="15sp"
+        android:layout_marginEnd="15sp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="10"
-        android:weightSum="100">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="25"/>
+        android:gravity="center"
+        android:layout_weight="20"
+        >
 
         <Button
             android:id="@+id/explanationAdvanceButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/ds_button"
-            android:text="@string/continuar"
-            android:textSize="25sp"
+
+            android:text="@string/scr_ExplanationActivity_nextScr_btn"
+            android:textSize="20sp"
             android:textAlignment="center"
             android:fontFamily="@font/raleway_medium"
-            android:textColor="@color/colorVeryLightGreyBanfox"/>
+            android:textColor="@color/colorVeryLightGreyBanfox"
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="25"/>
+            android:padding="20sp"
+            />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="12" />
-
 </LinearLayout>

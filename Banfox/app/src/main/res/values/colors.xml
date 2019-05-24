@@ -18,6 +18,6 @@
     <color name="colorLightPurpleBanfox">#b95487 </color>
     <color name="colorMagentaBanfox">#e45a65 </color>
     <color name="colorOrangeBanfox">#ff7c26 </color>
-
+    <color name="background">#FFFFFF</color>
 
 </resources>
