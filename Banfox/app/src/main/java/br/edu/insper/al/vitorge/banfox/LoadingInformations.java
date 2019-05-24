@@ -19,11 +19,17 @@ public class LoadingInformations extends AppCompatActivity {
     private TextView mLoadingTextThree;
     private int mProgressStatus = 0;
     private Handler mHandler = new Handler();
+    private static LoadingInformations mContext;
+
+    public static LoadingInformations getmContext() {
+        return mContext;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_informations);
+        mContext = this;
 
         String sourceImage = ((Global) this.getApplication()).getFacePicture();
         String targetImage = ((Global) this.getApplication()).getGroupPicture();
