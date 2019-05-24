@@ -79,6 +79,8 @@ public class CamOne extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
     private byte[] bytes;
+    private ByteBuffer buffer;
+    private String path;
 
 
 
@@ -158,13 +160,13 @@ public class CamOne extends AppCompatActivity {
                 savePhoto(bytes);
                 switch (pictureNumber) {
                     case 0:
-                        ((Global) CamOne.this.getApplication()).setFacePicture(bytes);
+                        ((Global) CamOne.this.getApplication()).setFacePicture(path);
                         break;
                     case 1:
-                        ((Global) CamOne.this.getApplication()).setIdPicture(bytes);
+                        ((Global) CamOne.this.getApplication()).setIdPicture(path);
                         break;
                     case 2:
-                        ((Global) CamOne.this.getApplication()).setGroupPicture(bytes);
+                        ((Global) CamOne.this.getApplication()).setGroupPicture(path);
                         break;
                     default:
                         break;
@@ -224,14 +226,14 @@ public class CamOne extends AppCompatActivity {
                 else{
                     captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
                 }
-
-                file = new File(Environment.getExternalStorageDirectory()+"/"+UUID.randomUUID().toString()+".jpg");
+                path = Environment.getExternalStorageDirectory()+"/"+UUID.randomUUID().toString()+".jpg";
+                file = new File(path);
                 ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener(){
                     @Override
                     public void onImageAvailable(ImageReader reader) {
                         Image image;
                         image = reader.acquireLatestImage();
-                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                        buffer = image.getPlanes()[0].getBuffer();
                         bytes = new byte[buffer.capacity()];
                         buffer.get(bytes);
                     }
