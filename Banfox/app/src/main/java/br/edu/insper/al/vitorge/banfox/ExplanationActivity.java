@@ -9,20 +9,24 @@ import android.widget.Toast;
 
 public class ExplanationActivity extends AppCompatActivity {
 
+    // Widgets
+    private Button explanationAdvanceButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explanation);
 
-        String name = ((Global) this.getApplication()).getUserName();
-        Toast toast = Toast.makeText(this, name, Toast.LENGTH_LONG);
-        toast.show();
-        Button button = findViewById(R.id.explanationAdvanceButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ExplanationActivity.this, FunctionalityInformation.class));
-            }
+        // Assigning the view's button to the class's attribute.
+        explanationAdvanceButton = findViewById(R.id.explanationAdvanceButton);
+
+        // Crating a click listener for the button.
+        explanationAdvanceButton.setOnClickListener((view) -> {
+            // Creating an intent to change activity.
+            Intent intent = new Intent(ExplanationActivity.this, Reader.class);
+
+            // Starting the activity.
+            startActivity(intent);
         });
     }
 }
