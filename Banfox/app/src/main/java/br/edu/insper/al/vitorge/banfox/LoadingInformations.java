@@ -33,8 +33,10 @@ public class LoadingInformations extends AppCompatActivity {
 
         String sourceImage = ((Global) this.getApplication()).getFacePicture();
         String targetImage = ((Global) this.getApplication()).getGroupPicture();
+        String idImage = ((Global) this.getApplication()).getIdPicture();
 
         new FaceCompare().execute(sourceImage, targetImage);
+        new TextDetection().execute(idImage);
 
         mProgressBar = findViewById(R.id.progressbar);
         mLoadingText = findViewById(R.id.LoadingSendingTextView);
