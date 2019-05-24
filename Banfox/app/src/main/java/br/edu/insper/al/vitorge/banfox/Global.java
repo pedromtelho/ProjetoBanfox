@@ -11,6 +11,7 @@ public class Global extends Application {
     private String facePicture;
     private String idPicture;
     private String groupPicture;
+    private boolean result;
 
     public String getUserName() {
         return this.userName;
@@ -58,5 +59,13 @@ public class Global extends Application {
 
     public void setGroupPicture(String groupPicture) {
         this.groupPicture = groupPicture;
+    }
+
+    public boolean isResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
     }
 }

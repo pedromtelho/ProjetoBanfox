@@ -21,14 +21,14 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class FaceCompare extends AsyncTask<String, Void, Void> {
+public class FaceCompare extends AsyncTask<String, Void, Boolean> {
 
     public FaceCompare() {
 
     }
 
     @Override
-    public Void doInBackground(String... strings) {
+    public Boolean doInBackground(String... strings) {
         String sourceImage = strings[0];
         String targetImage = strings[1];
         Float similarityThreshold = 70F;
@@ -79,6 +79,7 @@ public class FaceCompare extends AsyncTask<String, Void, Void> {
                     + " " + position.getTop()
                     + " matches with " + face.getConfidence().toString()
                     + "% confidence.");
+            return true;
 
         }
         List<ComparedFace> uncompared = compareFacesResult.getUnmatchedFaces();
@@ -87,6 +88,14 @@ public class FaceCompare extends AsyncTask<String, Void, Void> {
                 + " face(s) that did not match");
         System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
         System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
-        return null;
+        return true;
     }
+
+    @Override
+    protected void onPostExecute(Boolean result) {
+
+        ((Global) LoadingInformations.getmContext().getApplication()).setResult(result);
+
+    }
+
 }
