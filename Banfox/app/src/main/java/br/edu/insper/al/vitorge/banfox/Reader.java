@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -12,25 +11,21 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class Reader extends AppCompatActivity {
-    private Button scan_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reader);
-        scan_btn = (Button) findViewById(R.id.scan_btn);
+        Button scan_btn = findViewById(R.id.scan_btn);
         final Activity activity = this;
-        scan_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                IntentIntegrator integrator = new IntentIntegrator(activity);
-                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                integrator.setPrompt("Posicionar a linha vermelha sobre o QR Code.");
-                integrator.setCameraId(0);
-                integrator.setBeepEnabled(false);
-                integrator.setBarcodeImageEnabled(false);
-                integrator.initiateScan();
-            }
+        scan_btn.setOnClickListener(view -> {
+            IntentIntegrator integrator = new IntentIntegrator(activity);
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+            integrator.setPrompt("Posicionar a linha vermelha sobre o QR Code.");
+            integrator.setCameraId(0);
+            integrator.setBeepEnabled(false);
+            integrator.setBarcodeImageEnabled(false);
+            integrator.initiateScan();
         });
     }
     @Override
@@ -42,9 +37,6 @@ public class Reader extends AppCompatActivity {
             }
             else {
                 String message = result.getContents();
-
-                Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-                toast.show();
 
                 ((Global) this.getApplication()).setUserName(message);
 
