@@ -19,10 +19,6 @@ import java.util.List;
 
 public class FaceCompare extends AsyncTask<String, Void, Boolean> {
 
-    public FaceCompare() {
-
-    }
-
     @Override
     public Boolean doInBackground(String... strings) {
         String sourceImage = strings[0];
@@ -68,30 +64,43 @@ public class FaceCompare extends AsyncTask<String, Void, Boolean> {
 
         // Display results
         List<CompareFacesMatch> faceDetails = compareFacesResult.getFaceMatches();
-        for (CompareFacesMatch match: faceDetails){
-            ComparedFace face= match.getFace();
+
+        for (CompareFacesMatch match: faceDetails) {
+            ComparedFace face = match.getFace();
             BoundingBox position = face.getBoundingBox();
             System.out.println("Face at " + position.getLeft().toString()
                     + " " + position.getTop()
                     + " matches with " + face.getConfidence().toString()
                     + "% confidence.");
-            return true;
-
         }
+
         List<ComparedFace> uncompared = compareFacesResult.getUnmatchedFaces();
 
-        System.out.println("There was " + uncompared.size()
-                + " face(s) that did not match");
-        System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
-        System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
-        return true;
+        System.out.println("There was " + uncompared.size() + " face(s) that did not match");
+        //System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
+        //System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
+
+        if (faceDetails.size() == Integer.valueOf(strings[2])) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
     protected void onPostExecute(Boolean result) {
+        // Getting the previous result.
+        boolean previusResult = ((Global) LoadingInformations.getmContext().getApplication()).isFaceMatch();
 
-        ((Global) LoadingInformations.getmContext().getApplication()).setResult(result);
-
+        if (!previusResult) {
+            // If the previous result is false, we don't update it with the new one, doesn't
+            // matter what the latest result is.
+            ((Global) LoadingInformations.getmContext().getApplication()).setFaceMatch(false);
+        }
+        else {
+            // If the previous result is true, we update it with the new one.
+            ((Global) LoadingInformations.getmContext().getApplication()).setFaceMatch(result);
+        }
     }
-
 }

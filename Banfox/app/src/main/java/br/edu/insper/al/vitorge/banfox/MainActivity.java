@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ((Global) this.getApplication()).setPictureNumber(0);
+        ((Global) this.getApplication()).setFaceMatch(true);
 
         askPermissions(this, permissions);
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             ((Global) this.getApplication()).setUserLongitude(longitude);
         }
         Button button = findViewById(R.id.home_btn);
-        button.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Reader.class)));
+        button.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExplanationActivity.class)));
     }
 
     private static boolean checkPermissions(Context context, String... permissions) {
