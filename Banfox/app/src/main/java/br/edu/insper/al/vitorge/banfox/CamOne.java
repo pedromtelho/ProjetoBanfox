@@ -1,7 +1,6 @@
 package br.edu.insper.al.vitorge.banfox;
 
 import android.Manifest;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -32,7 +31,6 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -41,7 +39,9 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class CamOne extends AppCompatActivity {
@@ -84,7 +84,7 @@ public class CamOne extends AppCompatActivity {
 
 
 
-    CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
+    private final CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice camera) {
             textureView.setVisibility(View.VISIBLE);
@@ -133,59 +133,45 @@ public class CamOne extends AppCompatActivity {
         buttonSend = findViewById(R.id.buttonSendPhoto);
         buttonDel = findViewById(R.id.buttonDelPhoto);
 
-        buttonSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchCamera();
-            }
-        });
+        buttonSwitch.setOnClickListener(v -> switchCamera());
 
         textureView.setSurfaceTextureListener(textureListener);
         btnCapture = findViewById(R.id.btnCapture);
-        btnCapture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takePicture();
-                btnCapture.setVisibility(View.INVISIBLE);
-                buttonSwitch.setVisibility(View.INVISIBLE);
-                buttonSend.setVisibility(View.VISIBLE);
-                buttonDel.setVisibility(View.VISIBLE);
+        btnCapture.setOnClickListener(v -> {
+            takePicture();
+            btnCapture.setVisibility(View.INVISIBLE);
+            buttonSwitch.setVisibility(View.INVISIBLE);
+            buttonSend.setVisibility(View.VISIBLE);
+            buttonDel.setVisibility(View.VISIBLE);
 
-            }
         });
 
-        buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                savePhoto(bytes);
-                switch (pictureNumber) {
-                    case 0:
-                        ((Global) CamOne.this.getApplication()).setFacePicture(path);
-                        break;
-                    case 1:
-                        ((Global) CamOne.this.getApplication()).setIdPicture(path);
-                        break;
-                    case 2:
-                        ((Global) CamOne.this.getApplication()).setGroupPicture(path);
-                        break;
-                    default:
-                        break;
-                }
-                ((Global) CamOne.this.getApplication()).setPictureNumber(pictureNumber + 1);
-                Intent intent = new Intent(CamOne.this, nextClass);
-                startActivity(intent);
+        buttonSend.setOnClickListener(v -> {
+            savePhoto(bytes);
+            switch (pictureNumber) {
+                case 0:
+                    ((Global) CamOne.this.getApplication()).setFacePicture(path);
+                    break;
+                case 1:
+                    ((Global) CamOne.this.getApplication()).setIdPicture(path);
+                    break;
+                case 2:
+                    ((Global) CamOne.this.getApplication()).setGroupPicture(path);
+                    break;
+                default:
+                    break;
             }
+            ((Global) CamOne.this.getApplication()).setPictureNumber(pictureNumber + 1);
+            Intent intent = new Intent(CamOne.this, nextClass);
+            startActivity(intent);
         });
 
-        buttonDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createCameraPreview();
-                btnCapture.setVisibility(View.VISIBLE);
-                buttonSwitch.setVisibility(View.VISIBLE);
-                buttonSend.setVisibility(View.INVISIBLE);
-                buttonDel.setVisibility(View.INVISIBLE);
-            }
+        buttonDel.setOnClickListener(v -> {
+            createCameraPreview();
+            btnCapture.setVisibility(View.VISIBLE);
+            buttonSwitch.setVisibility(View.VISIBLE);
+            buttonSend.setVisibility(View.INVISIBLE);
+            buttonDel.setVisibility(View.INVISIBLE);
         });
     }
 
@@ -196,8 +182,7 @@ public class CamOne extends AppCompatActivity {
         try{
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
             Size[] jpegSizes = null;
-            if(characteristics!=null)
-                jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
+            jpegSizes = Objects.requireNonNull(characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)).getOutputSizes(ImageFormat.JPEG);
 
                 //Capturar imagem com tamanho customizado
                 int width = 480;
@@ -205,13 +190,27 @@ public class CamOne extends AppCompatActivity {
                 if(jpegSizes!=null && jpegSizes.length > 0){
                     width = jpegSizes[0].getWidth();
                     height = jpegSizes[0].getHeight();
+
                 }
+
+                System.out.println(width);
+                System.out.println(".....");
+                System.out.println("..");
+                System.out.println("........");
+                System.out.println(height);
 
                 //Como as imagens estão sendo interpretadas
                 ImageReader reader = ImageReader.newInstance(width,height,ImageFormat.JPEG,1);
                 List<Surface> outputSurface = new ArrayList<>(2);
                 outputSurface.add(reader.getSurface());
                 outputSurface.add(new Surface(textureView.getSurfaceTexture()));
+
+                System.out.println(outputSurface);
+                System.out.println(".....");
+                System.out.println("..");
+                System.out.println("........");
+                System.out.println(height);
+
                 final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
                 captureBuilder.addTarget(reader.getSurface());
                 captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
@@ -220,7 +219,7 @@ public class CamOne extends AppCompatActivity {
                 //Check da orientação baseada no aparelho
                 int rotation = getWindowManager().getDefaultDisplay().getRotation();
 
-                if (cameraDevice.getId() == "1"){
+                if (cameraDevice.getId().equals("1")){
                     captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, 270);
                 }
                 else{
@@ -228,15 +227,12 @@ public class CamOne extends AppCompatActivity {
                 }
                 path = Environment.getExternalStorageDirectory()+"/"+UUID.randomUUID().toString()+".jpg";
                 file = new File(path);
-                ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener(){
-                    @Override
-                    public void onImageAvailable(ImageReader reader) {
-                        Image image;
-                        image = reader.acquireLatestImage();
-                        buffer = image.getPlanes()[0].getBuffer();
-                        bytes = new byte[buffer.capacity()];
-                        buffer.get(bytes);
-                    }
+                ImageReader.OnImageAvailableListener readerListener = reader1 -> {
+                    Image image;
+                    image = reader1.acquireLatestImage();
+                    buffer = image.getPlanes()[0].getBuffer();
+                    bytes = new byte[buffer.capacity()];
+                    buffer.get(bytes);
                 };
                 reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
 
@@ -300,7 +296,7 @@ public class CamOne extends AppCompatActivity {
             Surface surface = new Surface(texture);
             captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             captureRequestBuilder.addTarget(surface);
-            cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
+            cameraDevice.createCaptureSession(Collections.singletonList(surface), new CameraCaptureSession.StateCallback() {
                 @Override
                 public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                     if (cameraDevice == null)
@@ -359,7 +355,7 @@ public class CamOne extends AppCompatActivity {
         }
     }
 
-    TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
+    private final TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
             openCamera();
@@ -409,7 +405,7 @@ public class CamOne extends AppCompatActivity {
         super.onPause();
     }
 
-    public void switchCamera() {
+    private void switchCamera() {
         System.out.println(cameraId);
         if (cameraId.equals(CAMERA_FRONT)) {
             cameraId = CAMERA_BACK;
@@ -423,7 +419,7 @@ public class CamOne extends AppCompatActivity {
         }
     }
 
-    public void reopenCamera() {
+    private void reopenCamera() {
         if (textureView.isAvailable()) {
             openCamera();
         } else {
