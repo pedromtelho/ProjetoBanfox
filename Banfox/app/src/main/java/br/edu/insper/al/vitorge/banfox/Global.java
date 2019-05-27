@@ -6,12 +6,13 @@ import android.location.Location;
 public class Global extends Application {
 
     private String userName;
-    private Location userLocation;
     private int pictureNumber;
     private String facePicture;
     private String idPicture;
     private String groupPicture;
     private boolean result;
+    private double userLatitude;
+    private double userLongitude;
 
     public String getUserName() {
         return this.userName;
@@ -27,14 +28,6 @@ public class Global extends Application {
 
     public void setPictureNumber(int pictureNumber) {
         this.pictureNumber = pictureNumber;
-    }
-
-    public Location getUserLocation() {
-        return this.userLocation;
-    }
-
-    public void setUserLocation(Location userLocation) {
-        this.userLocation = userLocation;
     }
 
     public String getFacePicture() {
@@ -67,5 +60,21 @@ public class Global extends Application {
 
     public void setResult(boolean result) {
         this.result = result;
+    }
+
+    public double getUserLatitude() {
+        return userLatitude;
+    }
+
+    public void setUserLatitude(double userLatitude) {
+        this.userLatitude = userLatitude;
+    }
+
+    public double getUserLongitude() {
+        return userLongitude;
+    }
+
+    public void setUserLongitude(double userLongitude) {
+        this.userLongitude = userLongitude;
     }
 }
