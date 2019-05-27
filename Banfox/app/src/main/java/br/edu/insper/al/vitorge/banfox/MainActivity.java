@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             ((Global) this.getApplication()).setUserLongitude(longitude);
         }
         Button button = findViewById(R.id.home_btn);
-        button.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExplanationActivity.class)));
+        button.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Reader.class)));
     }
 
     private static boolean checkPermissions(Context context, String... permissions) {
