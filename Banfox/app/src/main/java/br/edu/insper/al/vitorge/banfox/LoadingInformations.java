@@ -31,10 +31,15 @@ public class LoadingInformations extends AppCompatActivity {
         setContentView(R.layout.activity_loading_informations);
         mContext = this;
 
-        String sourceImage = ((Global) this.getApplication()).getFacePicture();
-        String targetImage = ((Global) this.getApplication()).getGroupPicture();
+        String faceImage = ((Global) this.getApplication()).getFacePicture();
+        String idImage = ((Global) this.getApplication()).getIdPicture();
+        String groupImage = ((Global) this.getApplication()).getGroupPicture();
 
-        new FaceCompare().execute(sourceImage, targetImage);
+        new FaceCompare().execute(faceImage, idImage, "1");
+
+        new FaceCompare().execute(faceImage, groupImage, "2");
+
+        new FaceCompare().execute(idImage, groupImage, "2");
 
         mProgressBar = findViewById(R.id.progressbar);
         mLoadingText = findViewById(R.id.LoadingSendingTextView);

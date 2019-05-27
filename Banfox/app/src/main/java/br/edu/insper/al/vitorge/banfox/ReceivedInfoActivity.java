@@ -18,10 +18,8 @@ public class ReceivedInfoActivity extends AppCompatActivity {
         // Pegando o Intent que iniciou essa tela.
         Intent intent = getIntent();
 
-        // Aqui estamos esperando que uma informação seja passada para essa tela,
-        // que mostra se os dados enviados foram recebidos com sucesso ou não.
-        // O valor padrão, case não seja recebido nada, é de ocorreu um erro.
-        boolean success = intent.getBooleanExtra("success", false);
+        // Aqui pegamos a variável que indica se os faceMatch's foram um sucesso ou não.
+        boolean success = ((Global) ReceivedInfoActivity.this.getApplication()).isFaceMatch();
 
 
         // Inicializando os widgets.

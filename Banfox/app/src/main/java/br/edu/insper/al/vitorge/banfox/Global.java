@@ -11,7 +11,8 @@ public class Global extends Application {
     private String facePicture;
     private String idPicture;
     private String groupPicture;
-    private boolean result;
+
+    private boolean faceMatch;
 
     public String getUserName() {
         return this.userName;
@@ -61,11 +62,11 @@ public class Global extends Application {
         this.groupPicture = groupPicture;
     }
 
-    public boolean isResult() {
-        return result;
+    public boolean isFaceMatch() {
+        return faceMatch;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public void setFaceMatch(boolean faceAndID) {
+        this.faceMatch = faceAndID;
     }
 }

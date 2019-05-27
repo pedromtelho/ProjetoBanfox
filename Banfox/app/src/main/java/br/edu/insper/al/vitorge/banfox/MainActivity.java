@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ((Global) this.getApplication()).setPictureNumber(0);
+        ((Global) this.getApplication()).setFaceMatch(true);
 
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
