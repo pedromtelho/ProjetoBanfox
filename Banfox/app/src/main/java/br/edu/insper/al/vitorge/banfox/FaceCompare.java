@@ -1,7 +1,6 @@
 package br.edu.insper.al.vitorge.banfox;
 
 import android.os.AsyncTask;
-
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClient;
@@ -12,7 +11,6 @@ import com.amazonaws.services.rekognition.model.CompareFacesResult;
 import com.amazonaws.services.rekognition.model.ComparedFace;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.util.IOUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
