@@ -7,9 +7,6 @@ import android.widget.Button;
 
 public class FunctionalityInformation extends AppCompatActivity {
 
-    // Widgets
-    private Button nextScr_btn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +31,8 @@ public class FunctionalityInformation extends AppCompatActivity {
         }
 
         // Assigning the view's button to the class's attribute.
-        nextScr_btn = findViewById(R.id.nextScr_btn);
+        // Widgets
+        Button nextScr_btn = findViewById(R.id.nextScr_btn);
 
         // Creating a click listener for the button.
         nextScr_btn.setOnClickListener((view) -> {

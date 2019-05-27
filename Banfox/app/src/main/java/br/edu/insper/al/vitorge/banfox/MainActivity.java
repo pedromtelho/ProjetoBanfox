@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +18,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FusedLocationProviderClient fusedLocationClient;
     private Location clientLocation;
 
     private static final int REQUEST_PERMISSIONS = 0;
@@ -37,18 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
         ((Global) this.getApplication()).setPictureNumber(0);
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         askPermissions(this, permissions);
 
-        fusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    clientLocation = location;
-                    ((Global) MainActivity.this.getApplication()).setUserLocation(clientLocation);
-                    Log.d("message", String.valueOf(clientLocation));
-                }
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+            if (location != null) {
+                clientLocation = location;
+                ((Global) MainActivity.this.getApplication()).setUserLocation(clientLocation);
+                Log.d("message", String.valueOf(clientLocation));
             }
         });
 
@@ -56,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExplanationActivity.class)));
     }
 
-    public static boolean checkPermissions(Context context, String... permissions) {
+    private static boolean checkPermissions(Context context, String... permissions) {
         if (context != null && permissions != null) {
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -67,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void askPermissions(Context context, String... permissions) {
+    private void askPermissions(Context context, String... permissions) {
         if (!checkPermissions(context, permissions)) {
             ActivityCompat.requestPermissions(this, permissions, REQUEST_PERMISSIONS);
         }
