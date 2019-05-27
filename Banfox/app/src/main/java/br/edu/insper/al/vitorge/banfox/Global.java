@@ -13,6 +13,7 @@ public class Global extends Application {
     private boolean result;
     private double userLatitude;
     private double userLongitude;
+    private boolean faceMatch;
 
     public String getUserName() {
         return this.userName;
