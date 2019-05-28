@@ -19,6 +19,12 @@ import java.util.List;
 
 public class FaceCompare extends AsyncTask<String, Void, Boolean> {
 
+    private boolean done = false;
+
+    public FaceCompare() {
+        super();
+    }
+
     @Override
     public Boolean doInBackground(String... strings) {
         String sourceImage = strings[0];
@@ -102,5 +108,12 @@ public class FaceCompare extends AsyncTask<String, Void, Boolean> {
             // If the previous result is true, we update it with the new one.
             ((Global) LoadingInformations.getmContext().getApplication()).setFaceMatch(result);
         }
+
+        // Sets this task as done.
+        this.done = true;
+    }
+
+    public boolean isDone() {
+        return done;
     }
 }

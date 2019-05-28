@@ -1,6 +1,8 @@
 package br.edu.insper.al.vitorge.banfox;
 
 import android.content.Intent;
+import android.media.FaceDetector;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,10 @@ public class LoadingInformations extends AppCompatActivity {
     private final Handler mHandler = new Handler();
     private static LoadingInformations mContext;
 
+    private boolean face_id_compare_done = false;
+    private boolean face_group_compare_done = false;
+    private boolean id_group_compare_done = false;
+
     public static LoadingInformations getmContext() {
         return mContext;
     }
@@ -32,11 +38,17 @@ public class LoadingInformations extends AppCompatActivity {
         String idImage = ((Global) this.getApplication()).getIdPicture();
         String groupImage = ((Global) this.getApplication()).getGroupPicture();
 
-        new FaceCompare().execute(faceImage, idImage, "1");
+        //new FaceCompare().execute(faceImage, idImage, "1");
+        FaceCompare face_id_compare = new FaceCompare();
+        face_id_compare.execute(faceImage, idImage, "1");
 
-        new FaceCompare().execute(faceImage, groupImage, "2");
+        //new FaceCompare().execute(faceImage, groupImage, "2");
+        FaceCompare face_group_compare = new FaceCompare();
+        face_group_compare.execute(faceImage, groupImage, "2");
 
-        new FaceCompare().execute(idImage, groupImage, "2");
+        //new FaceCompare().execute(idImage, groupImage, "2");
+        FaceCompare id_group_compare = new FaceCompare();
+        id_group_compare.execute(idImage, groupImage, "2");
 
         mProgressBar = findViewById(R.id.progressbar);
         mLoadingText = findViewById(R.id.LoadingSendingTextView);
@@ -44,35 +56,63 @@ public class LoadingInformations extends AppCompatActivity {
         mLoadingTextThree = findViewById(R.id.LoadingFinalTextView);
 
         new Thread(() -> {
-            while(mProgressStatus < 100){
-                mProgressStatus++;
-                SystemClock.sleep(70);
+            while (mProgressStatus < 100) {
+                if (face_id_compare.isDone() && !face_id_compare_done) {
+                    mProgressStatus += 33;
 
-                mHandler.post(new Runnable(){
-                    @Override
-                    public void run(){
-                        mProgressBar.setProgress(mProgressStatus);
-                        if (mProgressStatus > 0 && mProgressStatus<30){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            // Stuff that updates the UI
                             mLoadingText.setVisibility(View.VISIBLE);
                         }
+                    });
 
-                        if (mProgressStatus > 35 && mProgressStatus < 60){
+                    face_id_compare_done = true;
+                }
+
+                if (face_group_compare.isDone() && !face_group_compare_done) {
+                    mProgressStatus += 33;
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            // Stuff that updates the UI
                             mLoadingText.setVisibility(View.INVISIBLE);
                             mLoadingTextTwo.setVisibility(View.VISIBLE);
                         }
-                        else if (mProgressStatus > 60 && mProgressStatus < 100){
+                    });
+
+                    face_group_compare_done = true;
+                }
+
+                if (id_group_compare.isDone() && !id_group_compare_done) {
+                    mProgressStatus += 34;
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            // Stuff that updates the UI
                             mLoadingTextTwo.setVisibility(View.INVISIBLE);
                             mLoadingTextThree.setVisibility(View.VISIBLE);
-                        } else if (mProgressStatus == 100) {
-                            Intent intent = new Intent(LoadingInformations.this, ReceivedInfoActivity.class);
-                            intent.putExtra("success", true);
-                            startActivity(intent);
                         }
-                    }
-                });
+                    });
+
+                    id_group_compare_done = true;
+                }
+
+                mProgressBar.setProgress(mProgressStatus);
+
+                if (mProgressStatus == 100) {
+                    // We change screens when all the face compares are done.
+                    Intent intent = new Intent(LoadingInformations.this, ReceivedInfoActivity.class);
+                    startActivity(intent);
+                }
             }
+
         }).start();
-
     }
-
 }
