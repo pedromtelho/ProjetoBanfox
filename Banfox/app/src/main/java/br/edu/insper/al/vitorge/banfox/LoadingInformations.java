@@ -38,6 +38,11 @@ public class LoadingInformations extends AppCompatActivity {
         String idImage = ((Global) this.getApplication()).getIdPicture();
         String groupImage = ((Global) this.getApplication()).getGroupPicture();
 
+        // Print user's location.
+        Double latitude = ((Global) this.getApplication()).getUserLatitude();
+        Double longitude = ((Global) this.getApplication()).getUserLongitude();
+        System.out.println("USER LOCATION:" + latitude + " " + longitude);
+
         //new FaceCompare().execute(faceImage, idImage, "1");
         FaceCompare face_id_compare = new FaceCompare();
         face_id_compare.execute(faceImage, idImage, "1");
