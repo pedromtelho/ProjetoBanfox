@@ -1,15 +1,14 @@
 package br.edu.insper.al.vitorge.banfox;
 
 import android.content.Intent;
-import android.media.FaceDetector;
-import android.os.AsyncTask;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class LoadingInformations extends AppCompatActivity {
     private ProgressBar mProgressBar;
@@ -23,6 +22,7 @@ public class LoadingInformations extends AppCompatActivity {
     private boolean face_id_compare_done = false;
     private boolean face_group_compare_done = false;
     private boolean id_group_compare_done = false;
+    private boolean text_detection_done = false;
 
     public static LoadingInformations getmContext() {
         return mContext;
@@ -37,6 +37,7 @@ public class LoadingInformations extends AppCompatActivity {
         String faceImage = ((Global) this.getApplication()).getFacePicture();
         String idImage = ((Global) this.getApplication()).getIdPicture();
         String groupImage = ((Global) this.getApplication()).getGroupPicture();
+        String textImage = ((Global) this.getApplication()).getTextPicture();
 
         // Print user's location.
         Double latitude = ((Global) this.getApplication()).getUserLatitude();
@@ -55,6 +56,9 @@ public class LoadingInformations extends AppCompatActivity {
         FaceCompare id_group_compare = new FaceCompare();
         id_group_compare.execute(idImage, groupImage, "2");
 
+        TextDetection text_detection = new TextDetection();
+        text_detection.execute(textImage);
+
         mProgressBar = findViewById(R.id.progressbar);
         mLoadingText = findViewById(R.id.LoadingSendingTextView);
         mLoadingTextTwo = findViewById(R.id.LoadingMiddleTextView);
@@ -63,50 +67,43 @@ public class LoadingInformations extends AppCompatActivity {
         new Thread(() -> {
             while (mProgressStatus < 100) {
                 if (face_id_compare.isDone() && !face_id_compare_done) {
-                    mProgressStatus += 33;
+                    mProgressStatus += 25;
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            // Stuff that updates the UI
-                            mLoadingText.setVisibility(View.VISIBLE);
-                        }
+                    runOnUiThread(() -> {
+                        // Stuff that updates the UI
+                        mLoadingText.setVisibility(View.VISIBLE);
                     });
 
                     face_id_compare_done = true;
                 }
 
                 if (face_group_compare.isDone() && !face_group_compare_done) {
-                    mProgressStatus += 33;
+                    mProgressStatus += 25;
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            // Stuff that updates the UI
-                            mLoadingText.setVisibility(View.INVISIBLE);
-                            mLoadingTextTwo.setVisibility(View.VISIBLE);
-                        }
+                    runOnUiThread(() -> {
+                        // Stuff that updates the UI
+                        mLoadingText.setVisibility(View.INVISIBLE);
+                        mLoadingTextTwo.setVisibility(View.VISIBLE);
                     });
 
                     face_group_compare_done = true;
                 }
 
                 if (id_group_compare.isDone() && !id_group_compare_done) {
-                    mProgressStatus += 34;
+                    mProgressStatus += 25;
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            // Stuff that updates the UI
-                            mLoadingTextTwo.setVisibility(View.INVISIBLE);
-                            mLoadingTextThree.setVisibility(View.VISIBLE);
-                        }
+                    runOnUiThread(() -> {
+                        // Stuff that updates the UI
+                        mLoadingTextTwo.setVisibility(View.INVISIBLE);
+                        mLoadingTextThree.setVisibility(View.VISIBLE);
                     });
 
                     id_group_compare_done = true;
+                }
+
+                if (text_detection.isDone() && !text_detection_done) {
+                    mProgressStatus += 25;
+                    text_detection_done = true;
                 }
 
                 mProgressBar.setProgress(mProgressStatus);

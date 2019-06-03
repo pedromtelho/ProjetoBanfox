@@ -19,8 +19,10 @@ public class ReceivedInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Aqui pegamos a variável que indica se os faceMatch's foram um sucesso ou não.
-        boolean success = ((Global) ReceivedInfoActivity.this.getApplication()).isFaceMatch();
-
+        boolean faceMatch = ((Global) ReceivedInfoActivity.this.getApplication()).isFaceMatch();
+        boolean nameMatch = ((Global) ReceivedInfoActivity.this.getApplication()).isNameMatch();
+        boolean success = faceMatch && nameMatch;
+        System.out.println(((Global) ReceivedInfoActivity.this.getApplication()).getTextDetected());
 
         // Inicializando os widgets.
         // Declarando todos os widgets usados nessa tela.
