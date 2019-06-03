@@ -66,16 +66,10 @@ public class TextDetection extends AsyncTask<String, Void, Float> {
         } else {
             String name = String.valueOf(info.get("name"));
             boolean nameMatch = detection.toLowerCase().contains(name.split("\"")[1].toLowerCase());
-            System.out.println(name);
-            System.out.println("Name Match: " + nameMatch);
             String birth = String.valueOf(info.get("birth"));
             boolean birthMatch = detection.toLowerCase().contains(birth.split("\"")[1].toLowerCase());
-            System.out.println(birth);
-            System.out.println("Birth Match: " + birthMatch);
             String document = String.valueOf(info.get("document"));
             boolean documentMatch = detection.toLowerCase().contains(document.split("\"")[1].toLowerCase());
-            System.out.println(document);
-            System.out.println("Document Match: " + documentMatch);
             float infoScore = 0;
             if (nameMatch) infoScore += 2;
             if (birthMatch) infoScore += 1;

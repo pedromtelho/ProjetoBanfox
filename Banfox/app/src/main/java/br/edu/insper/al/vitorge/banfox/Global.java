@@ -16,7 +16,7 @@ public class Global extends Application {
     private boolean result;
     private double userLatitude;
     private double userLongitude;
-    private boolean faceMatch;
+    private Float faceMatch;
     private Float infoMatch;
 
     public int getPictureNumber() {
@@ -59,12 +59,12 @@ public class Global extends Application {
         this.groupPicture = groupPicture;
     }
 
-    public boolean isFaceMatch() {
+    public Float getFaceMatch() {
         return faceMatch;
     }
 
-    public void setFaceMatch(boolean faceAndID) {
-        this.faceMatch = faceAndID;
+    public void setFaceMatch(Float faceMatch) {
+        this.faceMatch = faceMatch;
     }
 
     public double getUserLatitude() {

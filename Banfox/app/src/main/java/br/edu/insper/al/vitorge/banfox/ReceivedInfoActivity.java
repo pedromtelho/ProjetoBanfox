@@ -10,21 +10,23 @@ import android.widget.TextView;
 
 public class ReceivedInfoActivity extends AppCompatActivity {
 
+    Float infoScore;
+    Float faceMatch;
+    int statusCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_received_info);
 
-        // Pegando o Intent que iniciou essa tela.
-        Intent intent = getIntent();
-
         // Aqui pegamos a variável que indica se os faceMatch's foram um sucesso ou não.
-        boolean faceMatch = ((Global) ReceivedInfoActivity.this.getApplication()).isFaceMatch();
+        faceMatch = ((Global) this.getApplication()).getFaceMatch();
+        faceMatch = faceMatch / 4;
         System.out.println("Facial: " + faceMatch);
-        Float infoScore = ((Global) ReceivedInfoActivity.this.getApplication()).getInfoMatch();
+        infoScore = ((Global) this.getApplication()).getInfoMatch();
         System.out.println("Nome: " + infoScore);
-        boolean success = faceMatch && (infoScore > (float) 0.5);
-        System.out.println(((Global) ReceivedInfoActivity.this.getApplication()).getTextDetected());
+        boolean success = (faceMatch > (float) 0.5) && (infoScore > (float) 0.5);
+        System.out.println(((Global) this.getApplication()).getTextDetected());
 
         // Inicializando os widgets.
         // Declarando todos os widgets usados nessa tela.
@@ -34,6 +36,7 @@ public class ReceivedInfoActivity extends AppCompatActivity {
         TextView thank_textView = findViewById(R.id.thank_textView);
         Button home_btn = findViewById(R.id.home_btn);
 
+        new PostRequest().execute();
 
         // Checamos se as informações foram recebidas com sucesso e apartir disso
         // decidimos exibir uma tela de sucesso ou de erro.
@@ -74,4 +77,5 @@ public class ReceivedInfoActivity extends AppCompatActivity {
             startActivity(homeScrIntent);
         });
     }
+
 }
