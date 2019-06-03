@@ -120,6 +120,9 @@ public class CamOne extends AppCompatActivity {
                 nextClass = FunctionalityInformation.class;
                 break;
             case 2:
+                nextClass = FunctionalityInformation.class;
+                break;
+            case 3:
                 nextClass = LoadingInformations.class;
                 break;
             default:
@@ -156,6 +159,9 @@ public class CamOne extends AppCompatActivity {
                     ((Global) CamOne.this.getApplication()).setIdPicture(path);
                     break;
                 case 2:
+                    ((Global) CamOne.this.getApplication()).setTextPicture(path);
+                    break;
+                case 3:
                     ((Global) CamOne.this.getApplication()).setGroupPicture(path);
                     break;
                 default:

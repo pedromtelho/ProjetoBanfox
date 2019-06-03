@@ -25,13 +25,17 @@
     <string name="scr_PictureGuide1_iconView_description">Ícone de tirar foto do usuário.</string>
 
     <string name="scr_PictureGuide2_textTop">Tire uma foto do seu documento: CNH ou RG.</string>
-    <string name="scr_PictureGuide2_textBottom">Tenha certeza de que o documento está bem enquadrado e focado.</string>
+    <string name="scr_PictureGuide2_textBottom">Tenha certeza de que o documento contém uma foto sua e está bem enquadrado e focado.</string>
     <string name="scr_PictureGuide2_iconView_description">Ícone de tirar foto do documento.</string>
 
-    <string name="scr_PictureGuide3_textTop">Tire uma foto sua segurando o documento  </string>
-    <string name="scr_PictureGuide3_textBottom">Certifique-se que tanto o documento quanto seu rosto estejam bem focados </string>
-    <string name="scr_PictureGuide3_iconView1_description">Ícone de tirar foto do documento.</string>
-    <string name="scr_PictureGuide3_iconView2_description">Ícone de tirar foto do usuário.</string>
+    <string name="scr_PictureGuide3_textTop">Tire uma foto do seu documento: CNH ou RG.</string>
+    <string name="scr_PictureGuide3_textBottom">Tenha certeza de que o documento contém seu RG ou CPF e está bem enquadrado e focado.</string>
+    <string name="scr_PictureGuide3_iconView_description">Ícone de tirar foto do documento.</string>
+
+    <string name="scr_PictureGuide4_textTop">Tire uma foto sua segurando o documento  </string>
+    <string name="scr_PictureGuide4_textBottom">Certifique-se que tanto o documento quanto seu rosto estejam bem focados </string>
+    <string name="scr_PictureGuide4_iconView1_description">Ícone de tirar foto do documento.</string>
+    <string name="scr_PictureGuide4_iconView2_description">Ícone de tirar foto do usuário.</string>
     <string name="scr_LoadingInformations_logo">Logo banfox</string>
 
 
@@ -50,7 +54,10 @@
 
 
 
-    <string name="enviando_dados">Enviando dados...</string>
+    <string name="enviando_dados">Estamos analisando suas imagens, aguarde um estante…</string>
+    <string name="picture1">Procurando por faces a serem analisadas…</string>
+    <string name="picture2">Analisando os matches…</string>
+    <string name="picture3">Checando seu nome…</string>
     <string name="aguarde">Aguarde um instante...</string>
     <string name="dados_encaminhamento">Dados sendo encaminhados...</string>
 

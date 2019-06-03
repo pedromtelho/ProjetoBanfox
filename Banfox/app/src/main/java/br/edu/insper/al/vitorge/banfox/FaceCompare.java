@@ -17,19 +17,20 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class FaceCompare extends AsyncTask<String, Void, Boolean> {
+public class FaceCompare extends AsyncTask<String, Void, Float> {
 
     private boolean done = false;
 
-    public FaceCompare() {
+    FaceCompare() {
         super();
     }
 
     @Override
-    public Boolean doInBackground(String... strings) {
+    public Float doInBackground(String... strings) {
         String sourceImage = strings[0];
         String targetImage = strings[1];
-        Float similarityThreshold = 70F;
+        Integer matches = Integer.valueOf(strings[2]);
+        Float similarityThreshold = 55F;
         ByteBuffer sourceImageBytes = null;
         ByteBuffer targetImageBytes = null;
 
@@ -86,28 +87,23 @@ public class FaceCompare extends AsyncTask<String, Void, Boolean> {
         //System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
         //System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
 
-        if (faceDetails.size() == Integer.valueOf(strings[2])) {
-            return true;
-        }
-        else {
-            return false;
+        if (faceDetails.size() == matches) {
+            if (matches == 2) {
+                return (float) 1;
+            } else {
+                return (float) 2;
+            }
+        } else {
+            return (float) 0;
         }
     }
 
     @Override
-    protected void onPostExecute(Boolean result) {
+    protected void onPostExecute(Float result) {
         // Getting the previous result.
-        boolean previusResult = ((Global) LoadingInformations.getmContext().getApplication()).isFaceMatch();
-
-        if (!previusResult) {
-            // If the previous result is false, we don't update it with the new one, doesn't
-            // matter what the latest result is.
-            ((Global) LoadingInformations.getmContext().getApplication()).setFaceMatch(false);
-        }
-        else {
-            // If the previous result is true, we update it with the new one.
-            ((Global) LoadingInformations.getmContext().getApplication()).setFaceMatch(result);
-        }
+        Float previusScore = ((Global) LoadingInformations.getmContext().getApplication()).getFaceMatch();
+        float newScore = previusScore + result;
+        ((Global) LoadingInformations.getmContext().getApplication()).setFaceMatch(newScore);
 
         // Sets this task as done.
         this.done = true;

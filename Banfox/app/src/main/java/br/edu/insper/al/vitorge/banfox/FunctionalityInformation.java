@@ -26,6 +26,9 @@ public class FunctionalityInformation extends AppCompatActivity {
             case 2:
                 setContentView(R.layout.activity_picture_guide3);
                 break;
+            case 3:
+                setContentView(R.layout.activity_picture_guide4);
+                break;
             default:
                 break;
         }
