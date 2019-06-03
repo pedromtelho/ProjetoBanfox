@@ -50,7 +50,10 @@
 
 
 
-    <string name="enviando_dados">Enviando dados...</string>
+    <string name="enviando_dados">Estamos analisando suas imagens, aguarde um estante…</string>
+    <string name="picture1">Procurando por faces a serem analisadas…</string>
+    <string name="picture2">Analisando os matches…</string>
+    <string name="picture3">Checando seu nome…</string>
     <string name="aguarde">Aguarde um instante...</string>
     <string name="dados_encaminhamento">Dados sendo encaminhados...</string>
 

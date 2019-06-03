@@ -9,6 +9,7 @@ import com.amazonaws.services.rekognition.model.DetectTextRequest;
 import com.amazonaws.services.rekognition.model.DetectTextResult;
 import com.amazonaws.services.rekognition.model.Image;
 import com.amazonaws.util.IOUtils;
+import com.google.gson.JsonObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +17,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class TextDetection extends AsyncTask<String, Void, Boolean> {
+public class TextDetection extends AsyncTask<String, Void, Float> {
 
     private boolean done;
 
@@ -26,8 +27,8 @@ public class TextDetection extends AsyncTask<String, Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(String... strings) {
-        String name = ((Global) LoadingInformations.getmContext().getApplication()).getUserName();
+    protected Float doInBackground(String... strings) {
+        JsonObject info = ((Global) LoadingInformations.getmContext().getApplication()).getUserInfo();
         String imagePath = strings[0];
         ByteBuffer imageBytes = null;
         AmazonRekognition rekognitionClient = new AmazonRekognitionClient(new BasicAWSCredentials(BuildConfig.AccessKey, BuildConfig.SecretKey));
@@ -61,16 +62,34 @@ public class TextDetection extends AsyncTask<String, Void, Boolean> {
         ((Global) LoadingInformations.getmContext().getApplication()).setTextDetected(detection);
 
         if (textDetections.size() == 0) {
-            return false;
+            return (float) 0;
         } else {
-            return detection.toLowerCase().contains(name.toLowerCase());
+            String name = String.valueOf(info.get("name"));
+            boolean nameMatch = detection.toLowerCase().contains(name.split("\"")[1].toLowerCase());
+            System.out.println(name);
+            System.out.println("Name Match: " + nameMatch);
+            String birth = String.valueOf(info.get("birth"));
+            boolean birthMatch = detection.toLowerCase().contains(birth.split("\"")[1].toLowerCase());
+            System.out.println(birth);
+            System.out.println("Birth Match: " + birthMatch);
+            String document = String.valueOf(info.get("document"));
+            boolean documentMatch = detection.toLowerCase().contains(document.split("\"")[1].toLowerCase());
+            System.out.println(document);
+            System.out.println("Document Match: " + documentMatch);
+            float infoScore = 0;
+            if (nameMatch) infoScore += 2;
+            if (birthMatch) infoScore += 1;
+            if (documentMatch) infoScore += 1;
+            infoScore = infoScore/4;
+
+            return infoScore;
         }
 
     }
 
     @Override
-    protected void onPostExecute(Boolean result) {
-        ((Global) LoadingInformations.getmContext().getApplication()).setNameMatch(result);
+    protected void onPostExecute(Float result) {
+        ((Global) LoadingInformations.getmContext().getApplication()).setInfoMatch(result);
         this.done = true;
     }
 

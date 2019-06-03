@@ -15,6 +15,7 @@ public class LoadingInformations extends AppCompatActivity {
     private TextView mLoadingText;
     private TextView mLoadingTextTwo;
     private TextView mLoadingTextThree;
+    private TextView mLoadingTextFour;
     private int mProgressStatus = 0;
     private final Handler mHandler = new Handler();
     private static LoadingInformations mContext;
@@ -61,17 +62,23 @@ public class LoadingInformations extends AppCompatActivity {
 
         mProgressBar = findViewById(R.id.progressbar);
         mLoadingText = findViewById(R.id.LoadingSendingTextView);
-        mLoadingTextTwo = findViewById(R.id.LoadingMiddleTextView);
-        mLoadingTextThree = findViewById(R.id.LoadingFinalTextView);
+        mLoadingTextTwo = findViewById(R.id.LoadingFirstTextView);
+        mLoadingTextThree = findViewById(R.id.LoadingSecondTextView);
+        mLoadingTextFour = findViewById(R.id.LoadingThirdTextView);
+
 
         new Thread(() -> {
+            runOnUiThread(() -> {
+                mLoadingText.setVisibility(View.VISIBLE);
+            });
             while (mProgressStatus < 100) {
                 if (face_id_compare.isDone() && !face_id_compare_done) {
                     mProgressStatus += 25;
 
                     runOnUiThread(() -> {
                         // Stuff that updates the UI
-                        mLoadingText.setVisibility(View.VISIBLE);
+                        mLoadingText.setVisibility(View.INVISIBLE);
+                        mLoadingTextTwo.setVisibility(View.VISIBLE);
                     });
 
                     face_id_compare_done = true;
@@ -82,8 +89,8 @@ public class LoadingInformations extends AppCompatActivity {
 
                     runOnUiThread(() -> {
                         // Stuff that updates the UI
-                        mLoadingText.setVisibility(View.INVISIBLE);
-                        mLoadingTextTwo.setVisibility(View.VISIBLE);
+                        mLoadingTextTwo.setVisibility(View.INVISIBLE);
+                        mLoadingTextThree.setVisibility(View.VISIBLE);
                     });
 
                     face_group_compare_done = true;
@@ -94,8 +101,8 @@ public class LoadingInformations extends AppCompatActivity {
 
                     runOnUiThread(() -> {
                         // Stuff that updates the UI
-                        mLoadingTextTwo.setVisibility(View.INVISIBLE);
-                        mLoadingTextThree.setVisibility(View.VISIBLE);
+                        mLoadingTextThree.setVisibility(View.INVISIBLE);
+                        mLoadingTextFour.setVisibility(View.VISIBLE);
                     });
 
                     id_group_compare_done = true;

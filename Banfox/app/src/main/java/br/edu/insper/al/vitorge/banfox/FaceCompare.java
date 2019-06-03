@@ -21,7 +21,7 @@ public class FaceCompare extends AsyncTask<String, Void, Boolean> {
 
     private boolean done = false;
 
-    public FaceCompare() {
+    FaceCompare() {
         super();
     }
 
@@ -29,7 +29,7 @@ public class FaceCompare extends AsyncTask<String, Void, Boolean> {
     public Boolean doInBackground(String... strings) {
         String sourceImage = strings[0];
         String targetImage = strings[1];
-        Float similarityThreshold = 70F;
+        Float similarityThreshold = 55F;
         ByteBuffer sourceImageBytes = null;
         ByteBuffer targetImageBytes = null;
 
@@ -86,12 +86,7 @@ public class FaceCompare extends AsyncTask<String, Void, Boolean> {
         //System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
         //System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
 
-        if (faceDetails.size() == Integer.valueOf(strings[2])) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return faceDetails.size() == Integer.valueOf(strings[2]);
     }
 
     @Override

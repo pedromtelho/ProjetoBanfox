@@ -7,8 +7,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Reader extends AppCompatActivity {
 
@@ -37,8 +42,10 @@ public class Reader extends AppCompatActivity {
             }
             else {
                 String message = result.getContents();
+                JsonParser parser = new JsonParser();
+                JsonObject json = (JsonObject) parser.parse(message);
 
-                ((Global) this.getApplication()).setUserName(message);
+                ((Global) this.getApplication()).setUserInfo(json);
 
                 Intent intent = new Intent(Reader.this, FunctionalityInformation.class);
                 startActivity(intent);

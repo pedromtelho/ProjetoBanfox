@@ -2,10 +2,12 @@ package br.edu.insper.al.vitorge.banfox;
 
 import android.app.Application;
 
+import com.google.gson.JsonObject;
+
 public class Global extends Application {
 
     private int pictureNumber;
-    private String userName;
+    private JsonObject userInfo;
     private String facePicture;
     private String idPicture;
     private String groupPicture;
@@ -14,8 +16,8 @@ public class Global extends Application {
     private boolean result;
     private double userLatitude;
     private double userLongitude;
-    private boolean nameMatch;
     private boolean faceMatch;
+    private Float infoMatch;
 
     public int getPictureNumber() {
         return this.pictureNumber;
@@ -25,12 +27,12 @@ public class Global extends Application {
         this.pictureNumber = pictureNumber;
     }
 
-    public String getUserName() {
-        return this.userName;
+    public JsonObject getUserInfo() {
+        return this.userInfo;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserInfo(JsonObject userInfo) {
+        this.userInfo = userInfo;
     }
 
     public String getFacePicture() {
@@ -97,11 +99,11 @@ public class Global extends Application {
         this.textPicture = textPicture;
     }
 
-    public boolean isNameMatch() {
-        return nameMatch;
+    public Float getInfoMatch() {
+        return infoMatch;
     }
 
-    public void setNameMatch(boolean nameMatch) {
-        this.nameMatch = nameMatch;
+    public void setInfoMatch(Float infoMatch) {
+        this.infoMatch = infoMatch;
     }
 }
