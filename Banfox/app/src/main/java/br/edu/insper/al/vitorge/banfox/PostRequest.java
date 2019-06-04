@@ -15,6 +15,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 class PostRequest extends AsyncTask<Void, Void, Void> {
+    boolean done = false;
+    int statusCode;
 
     @Override
     protected Void doInBackground(Void... voids) {
@@ -49,7 +51,7 @@ class PostRequest extends AsyncTask<Void, Void, Void> {
             outputStream.close();
 
 
-            int statusCode = con.getResponseCode();
+            statusCode = con.getResponseCode();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
@@ -64,26 +66,6 @@ class PostRequest extends AsyncTask<Void, Void, Void> {
             TextView info_textView = LoadingInformations.getmContext().findViewById(R.id.info_textView);
             TextView thank_textView = LoadingInformations.getmContext().findViewById(R.id.thank_textView);
 
-            if (statusCode == 200) {
-                // Mudando o ícone exibido para o de sucesso.
-                icon_view.setBackground(ContextCompat.getDrawable(LoadingInformations.getmContext(), R.drawable.ic_check_black_24dp));
-                // Mudando o texto a ser exibido.
-                done_textView.setText(R.string.scr_received_info_success1);
-                // Mudando o texto a ser exibido.
-                info_textView.setText(R.string.scr_received_info_success2);
-                // Mudando o texto a ser exibido.
-                thank_textView.setText(R.string.scr_received_info_success3);
-            } else {
-                // Mudando o ícone exibido para o de erro.
-                icon_view.setBackground(ContextCompat.getDrawable(LoadingInformations.getmContext(), R.drawable.ic_error_black_24dp));
-                // Mudando o texto a ser exibido.
-                done_textView.setText(R.string.scr_received_info_error1);
-                // Mudando o texto a ser exibido.
-                info_textView.setText(R.string.scr_received_info_error2);
-                // Mudando o texto a ser exibido.
-                thank_textView.setText(R.string.scr_received_info_error3);
-            }
-
             //print result
             System.out.println("response");
             System.out.println(response.toString());
@@ -91,5 +73,26 @@ class PostRequest extends AsyncTask<Void, Void, Void> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void voids) {
+        boolean sentInfoSuccessfully;
+
+        if (statusCode == 200) {
+            sentInfoSuccessfully = true;
+        }
+        else {
+            sentInfoSuccessfully = false;
+        }
+
+        ((Global) LoadingInformations.getmContext().getApplication()).setInfoSentSuccessfully(sentInfoSuccessfully);
+
+        // Sets this task as done.
+        this.done = true;
+    }
+
+    public boolean isDone() {
+        return done;
     }
 }
