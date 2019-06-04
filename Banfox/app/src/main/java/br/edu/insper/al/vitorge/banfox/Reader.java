@@ -12,9 +12,6 @@ import com.google.gson.JsonParser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 public class Reader extends AppCompatActivity {
 
     @Override

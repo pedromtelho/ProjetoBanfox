@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.google.gson.JsonObject;
 
-public class Global extends Application {
+class Global extends Application {
 
     private int pictureNumber;
     private JsonObject userInfo;

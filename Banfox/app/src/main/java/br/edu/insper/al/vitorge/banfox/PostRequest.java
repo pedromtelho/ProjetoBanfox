@@ -1,6 +1,9 @@
 package br.edu.insper.al.vitorge.banfox;
 
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.gson.JsonObject;
 
@@ -9,11 +12,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
-public class PostRequest extends AsyncTask<Void, Void, Void> {
+class PostRequest extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
@@ -57,6 +58,31 @@ public class PostRequest extends AsyncTask<Void, Void, Void> {
                 response.append(inputLine);
             }
             in.close();
+
+            View icon_view = LoadingInformations.getmContext().findViewById(R.id.icon_view);
+            TextView done_textView = LoadingInformations.getmContext().findViewById(R.id.done_textView);
+            TextView info_textView = LoadingInformations.getmContext().findViewById(R.id.info_textView);
+            TextView thank_textView = LoadingInformations.getmContext().findViewById(R.id.thank_textView);
+
+            if (statusCode == 200) {
+                // Mudando o ícone exibido para o de sucesso.
+                icon_view.setBackground(ContextCompat.getDrawable(LoadingInformations.getmContext(), R.drawable.ic_check_black_24dp));
+                // Mudando o texto a ser exibido.
+                done_textView.setText(R.string.scr_received_info_success1);
+                // Mudando o texto a ser exibido.
+                info_textView.setText(R.string.scr_received_info_success2);
+                // Mudando o texto a ser exibido.
+                thank_textView.setText(R.string.scr_received_info_success3);
+            } else {
+                // Mudando o ícone exibido para o de erro.
+                icon_view.setBackground(ContextCompat.getDrawable(LoadingInformations.getmContext(), R.drawable.ic_error_black_24dp));
+                // Mudando o texto a ser exibido.
+                done_textView.setText(R.string.scr_received_info_error1);
+                // Mudando o texto a ser exibido.
+                info_textView.setText(R.string.scr_received_info_error2);
+                // Mudando o texto a ser exibido.
+                thank_textView.setText(R.string.scr_received_info_error3);
+            }
 
             //print result
             System.out.println("response");

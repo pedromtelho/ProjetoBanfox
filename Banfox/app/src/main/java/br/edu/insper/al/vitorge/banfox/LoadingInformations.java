@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class LoadingInformations extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private TextView mLoadingText;
@@ -68,9 +66,7 @@ public class LoadingInformations extends AppCompatActivity {
 
 
         new Thread(() -> {
-            runOnUiThread(() -> {
-                mLoadingText.setVisibility(View.VISIBLE);
-            });
+            runOnUiThread(() -> mLoadingText.setVisibility(View.VISIBLE));
             while (mProgressStatus < 100) {
                 if (face_id_compare.isDone() && !face_id_compare_done) {
                     mProgressStatus += 25;

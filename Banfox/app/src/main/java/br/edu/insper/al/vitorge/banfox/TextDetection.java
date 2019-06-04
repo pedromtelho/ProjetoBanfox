@@ -17,7 +17,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class TextDetection extends AsyncTask<String, Void, Float> {
+class TextDetection extends AsyncTask<String, Void, Float> {
 
     private boolean done;
 
