@@ -39,7 +39,7 @@ class PostRequest extends AsyncTask<Void, Void, Void> {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("id", id);
             jsonObject.addProperty("name", name);
-            jsonObject.addProperty("score", String.valueOf((faceMatch + infoScore) / 2));
+            jsonObject.addProperty("score", String.valueOf(((faceMatch/4) + infoScore) / 2));
             jsonObject.addProperty("faceMatch", String.valueOf(faceMatch > 0.5));
             jsonObject.addProperty("nameMatch", String.valueOf(infoScore > 0.5));
             jsonObject.addProperty("longitude", String.valueOf(longitude));
