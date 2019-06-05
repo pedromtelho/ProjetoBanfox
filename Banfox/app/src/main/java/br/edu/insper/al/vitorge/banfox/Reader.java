@@ -12,9 +12,6 @@ import com.google.gson.JsonParser;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 public class Reader extends AppCompatActivity {
 
     @Override
@@ -46,6 +43,7 @@ public class Reader extends AppCompatActivity {
                 JsonObject json = (JsonObject) parser.parse(message);
 
                 ((Global) this.getApplication()).setUserInfo(json);
+                System.out.println("[LOGG] QR Code lido, JSON adquirido e processado.");
 
                 Intent intent = new Intent(Reader.this, FunctionalityInformation.class);
                 startActivity(intent);

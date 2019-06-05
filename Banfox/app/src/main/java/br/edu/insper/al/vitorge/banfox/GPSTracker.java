@@ -22,7 +22,7 @@ public class GPSTracker extends Service implements LocationListener {
     private static final long DISTANCE_FOR_UPDATES = 10;
     private static final long MIN_FOR_UPDATES = 1000 * 300 * 1;
 
-    protected LocationManager locationManager;
+    private LocationManager locationManager;
 
     public GPSTracker(Context context) {
         this.mContext = context;

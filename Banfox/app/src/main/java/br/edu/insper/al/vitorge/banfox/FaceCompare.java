@@ -17,7 +17,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class FaceCompare extends AsyncTask<String, Void, Float> {
+class FaceCompare extends AsyncTask<String, Void, Float> {
 
     private boolean done = false;
 
@@ -75,7 +75,7 @@ public class FaceCompare extends AsyncTask<String, Void, Float> {
         for (CompareFacesMatch match: faceDetails) {
             ComparedFace face = match.getFace();
             BoundingBox position = face.getBoundingBox();
-            System.out.println("Face at " + position.getLeft().toString()
+            System.out.println("[LOGG] Face at " + position.getLeft().toString()
                     + " " + position.getTop()
                     + " matches with " + face.getConfidence().toString()
                     + "% confidence.");
@@ -83,7 +83,7 @@ public class FaceCompare extends AsyncTask<String, Void, Float> {
 
         List<ComparedFace> uncompared = compareFacesResult.getUnmatchedFaces();
 
-        System.out.println("There was " + uncompared.size() + " face(s) that did not match");
+        System.out.println("[LOGG] There was " + uncompared.size() + " face(s) that did not match");
         //System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
         //System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
 

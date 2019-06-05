@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.google.gson.JsonObject;
 
-public class Global extends Application {
+class Global extends Application {
 
     private int pictureNumber;
     private JsonObject userInfo;
@@ -18,6 +18,7 @@ public class Global extends Application {
     private double userLongitude;
     private Float faceMatch;
     private Float infoMatch;
+    private boolean infoSentSuccessfully;
 
     public int getPictureNumber() {
         return this.pictureNumber;
@@ -105,5 +106,13 @@ public class Global extends Application {
 
     public void setInfoMatch(Float infoMatch) {
         this.infoMatch = infoMatch;
+    }
+
+    public boolean isInfoSentSuccessfully() {
+        return infoSentSuccessfully;
+    }
+
+    public void setInfoSentSuccessfully(boolean infoSentSuccessfully) {
+        this.infoSentSuccessfully = infoSentSuccessfully;
     }
 }

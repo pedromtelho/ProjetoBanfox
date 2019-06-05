@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class LoadingInformations extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private TextView mLoadingText;
@@ -24,6 +22,7 @@ public class LoadingInformations extends AppCompatActivity {
     private boolean face_group_compare_done = false;
     private boolean id_group_compare_done = false;
     private boolean text_detection_done = false;
+    private boolean postRequestInitiaded = false;
 
     public static LoadingInformations getmContext() {
         return mContext;
@@ -43,22 +42,28 @@ public class LoadingInformations extends AppCompatActivity {
         // Print user's location.
         Double latitude = ((Global) this.getApplication()).getUserLatitude();
         Double longitude = ((Global) this.getApplication()).getUserLongitude();
-        System.out.println("USER LOCATION:" + latitude + " " + longitude);
+        System.out.println("[LOGG] Localização do usuário: " + latitude + "   " + longitude);
 
         //new FaceCompare().execute(faceImage, idImage, "1");
         FaceCompare face_id_compare = new FaceCompare();
         face_id_compare.execute(faceImage, idImage, "1");
+        System.out.println("[LOGG] Começou a comparar CARA e ID.");
 
         //new FaceCompare().execute(faceImage, groupImage, "2");
         FaceCompare face_group_compare = new FaceCompare();
         face_group_compare.execute(faceImage, groupImage, "2");
+        System.out.println("[LOGG] Começou a comparar CARA e GRUPO.");
 
         //new FaceCompare().execute(idImage, groupImage, "2");
         FaceCompare id_group_compare = new FaceCompare();
         id_group_compare.execute(idImage, groupImage, "2");
+        System.out.println("[LOGG] Começou a comparar ID e GRUPO.");
 
         TextDetection text_detection = new TextDetection();
         text_detection.execute(textImage);
+        System.out.println("[LOGG] Começou a procurar texto no DOCUMENTO.");
+
+        PostRequest postRequest = new PostRequest();
 
         mProgressBar = findViewById(R.id.progressbar);
         mLoadingText = findViewById(R.id.LoadingSendingTextView);
@@ -68,12 +73,10 @@ public class LoadingInformations extends AppCompatActivity {
 
 
         new Thread(() -> {
-            runOnUiThread(() -> {
-                mLoadingText.setVisibility(View.VISIBLE);
-            });
+            runOnUiThread(() -> mLoadingText.setVisibility(View.VISIBLE));
             while (mProgressStatus < 100) {
                 if (face_id_compare.isDone() && !face_id_compare_done) {
-                    mProgressStatus += 25;
+                    mProgressStatus += 22.5;
 
                     runOnUiThread(() -> {
                         // Stuff that updates the UI
@@ -82,10 +85,11 @@ public class LoadingInformations extends AppCompatActivity {
                     });
 
                     face_id_compare_done = true;
+                    System.out.println("[LOGG] Terminou de comparar CARA e ID.");
                 }
 
                 if (face_group_compare.isDone() && !face_group_compare_done) {
-                    mProgressStatus += 25;
+                    mProgressStatus += 22.5;
 
                     runOnUiThread(() -> {
                         // Stuff that updates the UI
@@ -94,10 +98,11 @@ public class LoadingInformations extends AppCompatActivity {
                     });
 
                     face_group_compare_done = true;
+                    System.out.println("[LOGG] Terminou de comparar CARA e GRUPO.");
                 }
 
                 if (id_group_compare.isDone() && !id_group_compare_done) {
-                    mProgressStatus += 25;
+                    mProgressStatus += 22.5;
 
                     runOnUiThread(() -> {
                         // Stuff that updates the UI
@@ -106,20 +111,39 @@ public class LoadingInformations extends AppCompatActivity {
                     });
 
                     id_group_compare_done = true;
+                    System.out.println("[LOGG] Terminou de comparar ID e GRUPO.");
                 }
 
                 if (text_detection.isDone() && !text_detection_done) {
-                    mProgressStatus += 25;
+                    mProgressStatus += 22.5;
                     text_detection_done = true;
+
+                    System.out.println("[LOGG] Terminou TextDetection.");
                 }
 
-                mProgressBar.setProgress(mProgressStatus);
+                if (face_id_compare_done
+                        && face_group_compare_done
+                        && id_group_compare_done
+                        && text_detection_done
+                        && !postRequestInitiaded) {
+                    postRequest.execute();
 
-                if (mProgressStatus == 100) {
+                    postRequestInitiaded = true;
+
+                    System.out.println("[LOGG] Iniciou PostRequest.");
+                }
+
+                if (postRequest.isDone()) {
+                    mProgressStatus += 10;
+
+                    System.out.println("[LOGG] Terminou o PostRequest.");
+
                     // We change screens when all the face compares are done.
                     Intent intent = new Intent(LoadingInformations.this, ReceivedInfoActivity.class);
                     startActivity(intent);
                 }
+
+                mProgressBar.setProgress(mProgressStatus);
             }
 
         }).start();
