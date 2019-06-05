@@ -42,22 +42,26 @@ public class LoadingInformations extends AppCompatActivity {
         // Print user's location.
         Double latitude = ((Global) this.getApplication()).getUserLatitude();
         Double longitude = ((Global) this.getApplication()).getUserLongitude();
-        System.out.println("USER LOCATION:" + latitude + " " + longitude);
+        System.out.println("[LOGG] Localização do usuário: " + latitude + "   " + longitude);
 
         //new FaceCompare().execute(faceImage, idImage, "1");
         FaceCompare face_id_compare = new FaceCompare();
         face_id_compare.execute(faceImage, idImage, "1");
+        System.out.println("[LOGG] Começou a comparar CARA e ID.");
 
         //new FaceCompare().execute(faceImage, groupImage, "2");
         FaceCompare face_group_compare = new FaceCompare();
         face_group_compare.execute(faceImage, groupImage, "2");
+        System.out.println("[LOGG] Começou a comparar CARA e GRUPO.");
 
         //new FaceCompare().execute(idImage, groupImage, "2");
         FaceCompare id_group_compare = new FaceCompare();
         id_group_compare.execute(idImage, groupImage, "2");
+        System.out.println("[LOGG] Começou a comparar ID e GRUPO.");
 
         TextDetection text_detection = new TextDetection();
         text_detection.execute(textImage);
+        System.out.println("[LOGG] Começou a procurar texto no DOCUMENTO.");
 
         PostRequest postRequest = new PostRequest();
 

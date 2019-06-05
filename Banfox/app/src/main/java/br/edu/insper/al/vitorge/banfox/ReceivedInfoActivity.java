@@ -18,10 +18,10 @@ public class ReceivedInfoActivity extends AppCompatActivity {
         // Aqui pegamos a variável que indica se os faceMatch's foram um sucesso ou não.
         Float faceMatch = ((Global) this.getApplication()).getFaceMatch();
         faceMatch = faceMatch / 4;
-        System.out.println("Facial: " + faceMatch);
+        System.out.println("[LOGG] Match facial: " + faceMatch);
         Float infoScore = ((Global) this.getApplication()).getInfoMatch();
-        System.out.println("Nome: " + infoScore);
-        System.out.println(((Global) this.getApplication()).getTextDetected());
+        System.out.println("[LOGG] Score de informações: " + infoScore);
+        System.out.println("[LOGG] Texto detectado:\n" + ((Global) this.getApplication()).getTextDetected());
 
         // Inicializando os widgets.
         // Declarando todos os widgets usados nessa tela.

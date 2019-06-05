@@ -67,8 +67,8 @@ class PostRequest extends AsyncTask<Void, Void, Void> {
             TextView thank_textView = LoadingInformations.getmContext().findViewById(R.id.thank_textView);
 
             //print result
-            System.out.println("response");
-            System.out.println(response.toString());
+            System.out.println("[LOGG] Resposta do PostRequest:");
+            System.out.println("[LOGG]\n" + response.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

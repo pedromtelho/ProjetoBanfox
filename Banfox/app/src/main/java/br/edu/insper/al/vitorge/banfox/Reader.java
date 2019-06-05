@@ -43,6 +43,7 @@ public class Reader extends AppCompatActivity {
                 JsonObject json = (JsonObject) parser.parse(message);
 
                 ((Global) this.getApplication()).setUserInfo(json);
+                System.out.println("[LOGG] QR Code lido, JSON adquirido e processado.");
 
                 Intent intent = new Intent(Reader.this, FunctionalityInformation.class);
                 startActivity(intent);
